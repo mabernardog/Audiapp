@@ -2,7 +2,6 @@ package com.audiapp.inicial;
 
 
 import com.audiapp.R;
-import com.audiapp.globales.Strings;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -35,25 +34,37 @@ protected void onCreate(Bundle savedInstanceState)
         Log.wtf("InicialActivity", "No hay barra de acción");
         }
 
+    // Todo: Comprobar si hay datos de login y dar valor al flag
+    boolean hayDatosLogin = false;
     // Cambiar de actividad, inicialmente por defecto a Login, modificar según criterios de desarrollo tomados
-    new Handler().postDelayed(new NextActivity(this), 5000);
-    Strings.urlBase("L");
+    new Handler().postDelayed(new SiguienteActivity(this, hayDatosLogin), 5000);
     }
 }
 
-class NextActivity implements Runnable
+class SiguienteActivity implements Runnable
 {
 private InicialActivity instancia;
+private boolean         hayDatosLogin;
 
-NextActivity(InicialActivity param)
+SiguienteActivity(InicialActivity param_instancia, boolean param_hayDatosLogin)
     {
-    instancia = param;
+    instancia       =   param_instancia;
+    hayDatosLogin   =   param_hayDatosLogin;
     }
 
 @Override
 public void run()
     {
-    Intent i = new Intent(instancia, InicialActivity.class);
+    Intent i;
+    if(hayDatosLogin)
+        {
+        // Todo: modificar siguiente línea según esté desarrollada la funcionalidad necesaria
+        i = new Intent(instancia, InicialActivity.class);
+        }
+    else
+        {
+        i = new Intent(instancia, ElegirInicioActivity.class);
+        }
 
     instancia.startActivity(i);
     instancia.finish();
