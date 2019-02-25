@@ -20,7 +20,7 @@ protected void onCreate(Bundle savedInstanceState)
 public void onClickRegistro(View v)
     {
     // Todo:
-    Intent i = new Intent(this, InicialActivity.class);
+    Intent i = new Intent(this, RegistroActivity.class);
 
     this.startActivity(i);
     this.finish();
