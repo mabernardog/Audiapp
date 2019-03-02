@@ -13,10 +13,11 @@ public class Strings
  * @param  localizacion "L" si servidor local, "E" si servidor externo
  * @return La URL
  */
+static String ipLocal     = "192.168.1.40";
+static String ipExt       = "192.168.1.46";
+
 public static String urlBase(String localizacion)
     {
-    String ipLocal     = "192.168.1.46";
-    String ipExt       = "192.168.1.46";
     int    puertoLocal = 8443;
     int    puertoExt   = 43999;
 
@@ -27,6 +28,19 @@ public static String urlBase(String localizacion)
     else if(localizacion.equals("E"))
         {
         return "https://" + ipExt + ":" + puertoExt;
+        }
+
+    return "";
+    }
+public static String DirIP(String localizacion)
+    {
+    if(localizacion.equals("L"))
+        {
+        return ipLocal;
+        }
+    else if(localizacion.equals("E"))
+        {
+        return ipExt;
         }
 
     return "";

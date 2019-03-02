@@ -14,8 +14,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.audiapp.R;
+import com.audiapp.apisgu.API_SGU;
+import com.audiapp.apisgu.AudiappConfiCerti;
+import com.audiapp.apisgu.AudiappHostnameVerifier;
+import com.audiapp.globales.Strings;
+import com.audiapp.modelo.Usuario;
 
 import java.util.Arrays;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class RegistroActivity extends Activity
@@ -52,16 +64,16 @@ private void definirListeners()
     Arrays.fill(editsValidos, Boolean.FALSE);
     // Obtener referencias
     //      Email
-    ref_til_email  =  (TextInputLayout) findViewById(R.id.inputlayout_email);
-    ref_edit_email =  (EditText)        findViewById(R.id.edit_reg_email);
+    ref_til_email  =  findViewById(R.id.inputlayout_email);
+    ref_edit_email =  findViewById(R.id.edit_reg_email);
     //      Nick
-    ref_til_nick   =  (TextInputLayout) findViewById(R.id.inputlayout_nick);
-    ref_edit_nick  =  (EditText)        findViewById(R.id.edit_reg_nick);
+    ref_til_nick   =  findViewById(R.id.inputlayout_nick);
+    ref_edit_nick  =  findViewById(R.id.edit_reg_nick);
     //      Contraseña
-    ref_til_passw  =  (TextInputLayout) findViewById(R.id.inputlayout_password);
-    ref_edit_passw =  (EditText)        findViewById(R.id.edit_reg_password);
+    ref_til_passw  =  findViewById(R.id.inputlayout_password);
+    ref_edit_passw =  findViewById(R.id.edit_reg_password);
     //      Botón enviar registro
-    ref_button_doRegisstro = (Button)   findViewById(R.id.button_doRegistro);
+    ref_button_doRegisstro = findViewById(R.id.button_doRegistro);
 
     // Crear listener para validar email
     ref_edit_email.setOnFocusChangeListener(new View.OnFocusChangeListener()
@@ -229,6 +241,7 @@ private void definirListeners()
     LinearLayout grupoEdits = findViewById(R.id.linearLayout_registro);
     final TextInputLayout ultimoHijo = (TextInputLayout) grupoEdits.getChildAt(grupoEdits.getChildCount()-1);
     final EditText editUltimoHijo = ultimoHijo.getEditText();
+    assert editUltimoHijo != null;
     editUltimoHijo.setOnEditorActionListener(new TextView.OnEditorActionListener()
         {
         @Override
@@ -254,27 +267,17 @@ private void definirListeners()
 private boolean esValidoEmail(String param_direccion)
     {
     // Pensar si usar mejor JavaMail
-    if(Patterns.EMAIL_ADDRESS.matcher(param_direccion).matches())
-        return true;
-    else
-        return false;
+    return Patterns.EMAIL_ADDRESS.matcher(param_direccion).matches();
     }
 
 private boolean esValidoNick(String param_nick)
     {
-    // Pensar si usar mejor JavaMail
-    if(param_nick.length() >= 3)
-        return true;
-    else
-        return false;
+    return param_nick.length() >= 3;
     }
 
 private boolean esValidoPassword(String param_passw)
     {
-    if(param_passw.length() >= 8)
-        return true;
-    else
-        return false;
+    return param_passw.length() >= 8;
     }
 
 private boolean esRegistrable(boolean[] param_validados)
@@ -286,11 +289,46 @@ private boolean esRegistrable(boolean[] param_validados)
     return true;
     }
 
-// Todo: implementar onClickRegistro
 public void onClickRegistro(View v)
     {
     Toast registrandoMsg = Toast.makeText(getApplicationContext(), "Creando la cuenta...", Toast.LENGTH_SHORT);
     registrandoMsg.show();
+    Usuario datosUsuario = new Usuario(ref_edit_email.getText().toString(), ref_edit_nick.getText().toString(), ref_edit_passw.getText().toString());
+    AudiappConfiCerti confiCerti = null;
+    try
+        {
+        confiCerti = new AudiappConfiCerti(getResources().openRawResource(R.raw.audiapp));
+        }
+    catch(Exception e)
+        {
+        String ret = "";
+        ret = e.getMessage();
+        }
+    // BASADO EN: https://stackoverflow.com/questions/29273387/certpathvalidatorexception-trust-anchor-for-certificate-path-not-found-retro/48966781#48966781
+    OkHttpClient client = new OkHttpClient.Builder().hostnameVerifier(new AudiappHostnameVerifier()).sslSocketFactory(confiCerti.getSslFactoria(), confiCerti.getTrustManager()).build();
+    client.hostnameVerifier();
+    Retrofit clienteSGU = new Retrofit.Builder().baseUrl(Strings.urlBase("L") + "/SGUAudiapp/SGU/").
+                                addConverterFactory(GsonConverterFactory.create()).client(client).build();
+    API_SGU apiSGU = clienteSGU.create(API_SGU.class);
+    String recibo = "";
+    apiSGU.hacerRegistro(datosUsuario, recibo).
+            enqueue(new Callback<String>()
+                {
+                @Override
+                public void onResponse(Call<String> llamada, Response<String> respuesta)
+                    {
+                    Toast response = Toast.makeText(getApplicationContext(), respuesta.body(), Toast.LENGTH_SHORT);
+                    int re = respuesta.code();
+                    response.show();
+                    }
+
+                @Override
+                public void onFailure(Call<String> llamada, Throwable t)
+                    {
+                    Toast failure = Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT);
+                    failure.show();
+                    }
+                });
     }
 
 }
