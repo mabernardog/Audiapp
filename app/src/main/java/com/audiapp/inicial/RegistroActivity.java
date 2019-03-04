@@ -19,6 +19,8 @@ import com.audiapp.apisgu.AudiappConfiCerti;
 import com.audiapp.apisgu.AudiappHostnameVerifier;
 import com.audiapp.globales.Strings;
 import com.audiapp.modelo.Usuario;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.util.Arrays;
 
@@ -48,6 +50,7 @@ private EditText ref_edit_passw;
 //      Botón enviar registro;
 private Button ref_button_doRegisstro;
 
+
 @Override
 protected void onCreate(Bundle savedInstanceState)
     {
@@ -74,7 +77,8 @@ private void definirListeners()
     ref_edit_passw =  findViewById(R.id.edit_reg_password);
     //      Botón enviar registro
     ref_button_doRegisstro = findViewById(R.id.button_doRegistro);
-
+    // Todo: eliminar tras finalizar
+    ref_button_doRegisstro.setEnabled(true);
     // Crear listener para validar email
     ref_edit_email.setOnFocusChangeListener(new View.OnFocusChangeListener()
         {
@@ -301,17 +305,15 @@ public void onClickRegistro(View v)
         }
     catch(Exception e)
         {
-        String ret = "";
-        ret = e.getMessage();
+        String ret = e.getMessage();
         }
-    // BASADO EN: https://stackoverflow.com/questions/29273387/certpathvalidatorexception-trust-anchor-for-certificate-path-not-found-retro/48966781#48966781
+
     OkHttpClient client = new OkHttpClient.Builder().hostnameVerifier(new AudiappHostnameVerifier()).sslSocketFactory(confiCerti.getSslFactoria(), confiCerti.getTrustManager()).build();
-    client.hostnameVerifier();
-    Retrofit clienteSGU = new Retrofit.Builder().baseUrl(Strings.urlBase("L") + "/SGUAudiapp/SGU/").
-                                addConverterFactory(GsonConverterFactory.create()).client(client).build();
+    Gson gson = new GsonBuilder().setLenient().create();
+    Retrofit clienteSGU = new Retrofit.Builder().baseUrl(Strings.urlBase("L") + "/api/sgu/").
+                                addConverterFactory(GsonConverterFactory.create(gson)).client(client).build();
     API_SGU apiSGU = clienteSGU.create(API_SGU.class);
-    String recibo = "";
-    apiSGU.hacerRegistro(datosUsuario, recibo).
+    apiSGU.hacerRegistro(datosUsuario).
             enqueue(new Callback<String>()
                 {
                 @Override
