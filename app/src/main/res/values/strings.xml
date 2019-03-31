@@ -1,11 +1,18 @@
 <resources>
-    <string name="app_name">Globales</string>
+    <string name="app_name">Audiapp</string>
+    <string name="app_name_mayus">AUDIAPP</string>
+    <string name="contentDescriptionLogo">Logotipo</string>
     <string name="title_registro">Creación de cuenta</string>
+    <string name="title_login">Iniciar sesión</string>
+    <string name="label_tenerCuenta">¿Tienes una cuenta?</string>
     <string name="button_signup">Sí, sí tengo</string>
     <string name="button_login">No, no tengo</string>
     <string name="button_aceptar">Aceptar</string>
-    <string name="label_tenerCuenta">¿Tienes una cuenta?</string>
     <string name="hint_eMail">E-mail</string>
     <string name="hint_nick">Nombre de usuario</string>
     <string name="hint_contrasenya">Contraseña</string>
+    <string name="title_activity_placeholder">PlaceholderActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

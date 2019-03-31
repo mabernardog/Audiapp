@@ -1,10 +1,11 @@
 package com.audiapp.inicial;
 
-import com.audiapp.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.audiapp.R;
 
 
 public class ElegirInicioActivity extends Activity
@@ -19,7 +20,6 @@ protected void onCreate(Bundle savedInstanceState)
 
 public void onClickRegistro(View v)
     {
-    // Todo:
     Intent i = new Intent(this, RegistroActivity.class);
 
     this.startActivity(i);

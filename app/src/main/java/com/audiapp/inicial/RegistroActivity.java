@@ -1,54 +1,65 @@
 package com.audiapp.inicial;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Patterns;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.audiapp.Audiapp;
 import com.audiapp.R;
 import com.audiapp.apisgu.API_SGU;
-import com.audiapp.apisgu.AudiappConfiCerti;
-import com.audiapp.apisgu.AudiappHostnameVerifier;
 import com.audiapp.globales.Strings;
+import com.audiapp.modelo.InfoDBAudiappi;
 import com.audiapp.modelo.Usuario;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.Arrays;
+import java.util.Objects;
 
-import okhttp3.OkHttpClient;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
+import static android.view.inputmethod.InputMethodManager.RESULT_UNCHANGED_SHOWN;
 
 
 public class RegistroActivity extends Activity
 {
 
-// Contador de edits válidos (pos1:
-private boolean[] editsValidos;
+// Controlar que solo se pueda clickar una vez el botón (evitar spam de registros)
+private boolean   botonClickado = false;
 // Obtener referencias
 //      Email
-private TextInputLayout ref_til_email;
-private EditText ref_edit_email;
+@Nullable
+@BindView(R.id.inputlayout_reg_email)     TextInputLayout ref_til_email;
+@Nullable
+@BindView(R.id.edit_reg_email)            EditText ref_edit_email;
 //      Nick;
-private TextInputLayout ref_til_nick;
-private EditText ref_edit_nick;
+@Nullable
+@BindView(R.id.inputlayout_reg_nick)      TextInputLayout ref_til_nick;
+@Nullable
+@BindView(R.id.edit_reg_nick)             EditText ref_edit_nick;
 //      Contraseña;
-private TextInputLayout ref_til_passw;
-private EditText ref_edit_passw;
+@Nullable
+@BindView(R.id.inputlayout_reg_password)  TextInputLayout ref_til_passw;
+@Nullable
+@BindView(R.id.edit_reg_password)         EditText ref_edit_passw;
 //      Botón enviar registro;
-private Button ref_button_doRegisstro;
+@Nullable
+@BindView(R.id.button_doRegistro)         Button ref_button_doRegisstro;
 
 
 @Override
@@ -56,187 +67,153 @@ protected void onCreate(Bundle savedInstanceState)
     {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_registro);
+    ButterKnife.bind(this);
 
     definirListeners();
     }
 
 private void definirListeners()
     {
-    // Inicializar array de editsValidos
-    editsValidos = new boolean[3];
-    Arrays.fill(editsValidos, Boolean.FALSE);
-    // Obtener referencias
-    //      Email
-    ref_til_email  =  findViewById(R.id.inputlayout_email);
-    ref_edit_email =  findViewById(R.id.edit_reg_email);
-    //      Nick
-    ref_til_nick   =  findViewById(R.id.inputlayout_nick);
-    ref_edit_nick  =  findViewById(R.id.edit_reg_nick);
-    //      Contraseña
-    ref_til_passw  =  findViewById(R.id.inputlayout_password);
-    ref_edit_passw =  findViewById(R.id.edit_reg_password);
-    //      Botón enviar registro
-    ref_button_doRegisstro = findViewById(R.id.button_doRegistro);
-    // Todo: eliminar tras finalizar
-    ref_button_doRegisstro.setEnabled(true);
     // Crear listener para validar email
-    ref_edit_email.setOnFocusChangeListener(new View.OnFocusChangeListener()
-        {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus)
+    assert ref_edit_email != null;
+    ref_edit_email.setOnFocusChangeListener((v, hasFocus) -> {
+        // Si ya tenía el foco:
+        if(hasFocus) return;    // Finalizar validación sin hacer nada
+        String mailPasado = ref_edit_email.getText().toString();
+        // Si es válido o está vacío
+        assert ref_til_email != null;
+        if(esValidoEmail(mailPasado))
             {
-            // Si ya tenía el foco:
-            if(hasFocus) return;    // Finalizar validación sin hacer nada
-            String mailPasado = ref_edit_email.getText().toString();
-            // Si no es válido
-            if(!esValidoEmail(mailPasado))
-                {
-                // Si está vacío
-                if(mailPasado.equals(""))
-                    {
-                    // No mostrar error
-                    ref_til_email.setError(null);
-                    ref_til_email.setErrorEnabled(false);
-                    }
-                // Si no (valida por incorrecto)
-                else
-                    {
-                    // Mostrar error
-                    ref_til_email.setError("Dirección de correo electrónico incorrecta");
-                    }
-                // Anotarlo como inválido
-                editsValidos[0] = false;
-                }
-            // Si es válido o está vacío
-            else
+            // No mostrar error
+            ref_til_email.setError(null);
+            ref_til_email.setErrorEnabled(false);
+            }
+        // Si no es válido
+        else
+            {
+            // Si está vacío
+            if(mailPasado.equals(""))
                 {
                 // No mostrar error
                 ref_til_email.setError(null);
                 ref_til_email.setErrorEnabled(false);
-                // Anotarlo como válido
-                editsValidos[0] = true;
                 }
-
-            // Si se puede activar el botón doRegistro
-            if(esRegistrable(editsValidos))
-                {
-                // Activarlo
-                ref_button_doRegisstro.setEnabled(true);
-                }
-            // Si no
+            // Si no (valida por incorrecto)
             else
                 {
-                // Desactivarlo
-                ref_button_doRegisstro.setEnabled(false);
+                // Mostrar error
+                ref_til_email.setError("Dirección de correo electrónico incorrecta");
                 }
+            }
+
+        // Si se puede activar el botón doRegistro
+        assert ref_button_doRegisstro != null;
+        if(esRegistrable())
+            {
+            // Activarlo
+            ref_button_doRegisstro.setEnabled(true);
+            }
+        // Si no
+        else
+            {
+            // Desactivarlo
+            ref_button_doRegisstro.setEnabled(false);
             }
         }
     );
 
     // Crear listener para validar nick
-    ref_edit_nick.setOnFocusChangeListener(new View.OnFocusChangeListener()
-        {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus)
+    assert ref_edit_nick != null;
+    ref_edit_nick.setOnFocusChangeListener((v, hasFocus) -> {
+        // Si ya tenía el foco:
+        if(hasFocus) return;    // Finalizar validación sin hacer nada
+        String nickPasado = ref_edit_nick.getText().toString();
+        // Si no es válido
+        assert ref_til_nick != null;
+        if(!esValidoNick(nickPasado))
             {
-            // Si ya tenía el foco:
-            if(hasFocus) return;    // Finalizar validación sin hacer nada
-            String nickPasado = ref_edit_nick.getText().toString();
-            // Si no es válido
-            if(!esValidoNick(nickPasado))
-                {
-                // Si está vacío
-                if(nickPasado.equals(""))
-                    {
-                    // No mostrar error
-                    ref_til_nick.setError(null);
-                    ref_til_nick.setErrorEnabled(false);
-                    }
-                // Si no (valida por incorrecto)
-                else
-                    {
-                    // Mostrar error
-                    ref_til_nick.setError("El nombre de usuario debe tener al menos 3 caracteres");
-                    }
-                // Anotarlo como inválido
-                editsValidos[1] = false;
-                }
-            // Si es válido
-            else
+            // Si está vacío
+            if(nickPasado.equals(""))
                 {
                 // No mostrar error
                 ref_til_nick.setError(null);
                 ref_til_nick.setErrorEnabled(false);
-                // Anotarlo como válido
-                editsValidos[1] = true;
                 }
-
-            // Si se puede activar el botón doRegistro
-            if(esRegistrable(editsValidos))
-                {
-                // Activarlo
-                ref_button_doRegisstro.setEnabled(true);
-                }
-            // Si no
+            // Si no (valida por incorrecto)
             else
                 {
-                // Desactivarlo
-                ref_button_doRegisstro.setEnabled(false);
+                // Mostrar error
+                ref_til_nick.setError("El nombre de usuario debe tener al menos 3 caracteres");
                 }
+            }
+        // Si es válido
+        else
+            {
+            // No mostrar error
+            ref_til_nick.setError(null);
+            ref_til_nick.setErrorEnabled(false);
+            }
+
+        // Si se puede activar el botón doRegistro
+        assert ref_button_doRegisstro != null;
+        if(esRegistrable())
+            {
+            // Activarlo
+            ref_button_doRegisstro.setEnabled(true);
+            }
+        // Si no
+        else
+            {
+            // Desactivarlo
+            ref_button_doRegisstro.setEnabled(false);
             }
         }
     );
 
     // Crear listener para validar contraseña
-    ref_edit_passw.setOnFocusChangeListener(new View.OnFocusChangeListener()
-        {
-        @Override
-        public void onFocusChange(View v, boolean hasFocus)
+    assert ref_edit_passw != null;
+    ref_edit_passw.setOnFocusChangeListener((v, hasFocus) -> {
+        // Si ya tenía el foco:
+        if(hasFocus) return;    // Finalizar validación sin hacer nada
+        String passwPasado = ref_edit_passw.getText().toString();
+        // Si no es válido
+        assert ref_til_passw != null;
+        if(!esValidoPassword(passwPasado))
             {
-            // Si ya tenía el foco:
-            if(hasFocus) return;    // Finalizar validación sin hacer nada
-            String passwPasado = ref_edit_passw.getText().toString();
-            // Si no es válido
-            if(!esValidoPassword(passwPasado))
-                {
-                // Si está vacío
-                if(passwPasado.equals(""))
-                    {
-                    // No mostrar error
-                    ref_til_passw.setError(null);
-                    ref_til_passw.setErrorEnabled(false);
-                    }
-                // Si no (valida por incorrecto)
-                else
-                    {
-                    // Mostrar error
-                    ref_til_passw.setError("La contraseña debe tener al menos 8 caracteres");
-                    }
-                // Anotarlo como inválido
-                editsValidos[2] = false;
-                }
-            // Si es válido o está vacío
-            else
+            // Si está vacío
+            if(passwPasado.equals(""))
                 {
                 // No mostrar error
                 ref_til_passw.setError(null);
                 ref_til_passw.setErrorEnabled(false);
-                // Anotarlo como válido
-                editsValidos[2] = true;
                 }
-
-            // Si se puede activar el botón doRegistro
-            if(esRegistrable(editsValidos))
-                {
-                // Activarlo
-                ref_button_doRegisstro.setEnabled(true);
-                }
-            // Si no
+            // Si no (valida por incorrecto)
             else
                 {
-                // Desactivarlo
-                ref_button_doRegisstro.setEnabled(false);
+                // Mostrar error
+                ref_til_passw.setError("La contraseña debe tener al menos 8 caracteres");
                 }
+            }
+        // Si es válido o está vacío
+        else
+            {
+            // No mostrar error
+            ref_til_passw.setError(null);
+            ref_til_passw.setErrorEnabled(false);
+            }
+
+        // Si se puede activar el botón doRegistro
+        assert ref_button_doRegisstro != null;
+        if(esRegistrable())
+            {
+            // Activarlo
+            ref_button_doRegisstro.setEnabled(true);
+            }
+        // Si no
+        else
+            {
+            // Desactivarlo
+            ref_button_doRegisstro.setEnabled(false);
             }
         }
     );
@@ -246,22 +223,20 @@ private void definirListeners()
     final TextInputLayout ultimoHijo = (TextInputLayout) grupoEdits.getChildAt(grupoEdits.getChildCount()-1);
     final EditText editUltimoHijo = ultimoHijo.getEditText();
     assert editUltimoHijo != null;
-    editUltimoHijo.setOnEditorActionListener(new TextView.OnEditorActionListener()
-        {
-        @Override
-        public boolean onEditorAction(TextView v, int actionId, KeyEvent evento)
+    editUltimoHijo.setOnEditorActionListener((v, actionId, evento) -> {
+        switch(actionId)
             {
-            switch(actionId)
-                {
-                // Caso: intro pulsado
-                case EditorInfo.IME_ACTION_DONE:
-                    // Quitar foco
-                    editUltimoHijo.clearFocus();
-                    return true;
-                // Por defecto
-                default:
-                    return false;
-                }
+            // Caso: intro pulsado
+            case EditorInfo.IME_ACTION_DONE:
+                // Quitar foco
+                editUltimoHijo.clearFocus();
+                // Obtener teclado
+                InputMethodManager teclado = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                teclado.hideSoftInputFromWindow(Objects.requireNonNull(getCurrentFocus()).getWindowToken(), RESULT_UNCHANGED_SHOWN);
+                return true;
+            // Por defecto
+            default:
+                return false;
             }
         }
     );
@@ -284,53 +259,110 @@ private boolean esValidoPassword(String param_passw)
     return param_passw.length() >= 8;
     }
 
-private boolean esRegistrable(boolean[] param_validados)
+private boolean esRegistrable()
     {
-    for(boolean editValido : param_validados)
+    // Si alguno tiene error: no es registrable
+    assert (ref_til_email != null && ref_til_nick != null && ref_til_passw != null);
+    if(ref_til_email.isErrorEnabled() || ref_til_nick.isErrorEnabled() || ref_til_passw.isErrorEnabled())
         {
-        if(!editValido) return false;
+        return false;
         }
-    return true;
+    // Si no, si algún edit está vacío: no es registrable
+    else
+        {
+        assert (ref_edit_email != null && ref_edit_nick != null && ref_edit_passw != null);
+        return !TextUtils.isEmpty(ref_edit_email.getText().toString()) && !TextUtils.isEmpty(ref_edit_nick.getText().toString())
+                && !TextUtils.isEmpty(ref_edit_passw.getText().toString());
+        }
     }
 
 public void onClickRegistro(View v)
     {
+    if(botonClickado) return;   // Si el botón ya ha sido pulsado: salir
+    botonClickado = true;
     Toast registrandoMsg = Toast.makeText(getApplicationContext(), "Creando la cuenta...", Toast.LENGTH_SHORT);
     registrandoMsg.show();
+    assert (ref_edit_email != null && ref_edit_nick != null && ref_edit_passw != null);
     Usuario datosUsuario = new Usuario(ref_edit_email.getText().toString(), ref_edit_nick.getText().toString(), ref_edit_passw.getText().toString());
-    AudiappConfiCerti confiCerti = null;
-    try
-        {
-        confiCerti = new AudiappConfiCerti(getResources().openRawResource(R.raw.audiapp));
-        }
-    catch(Exception e)
-        {
-        String ret = e.getMessage();
-        }
 
-    OkHttpClient client = new OkHttpClient.Builder().hostnameVerifier(new AudiappHostnameVerifier()).sslSocketFactory(confiCerti.getSslFactoria(), confiCerti.getTrustManager()).build();
-    Gson gson = new GsonBuilder().setLenient().create();
-    Retrofit clienteSGU = new Retrofit.Builder().baseUrl(Strings.urlBase("L") + "/api/sgu/").
-                                addConverterFactory(GsonConverterFactory.create(gson)).client(client).build();
-    API_SGU apiSGU = clienteSGU.create(API_SGU.class);
+    // Definir contexto para los intents
+    final RegistroActivity instancia = this;
+    API_SGU apiSGU = Audiapp.getInstancia().getRetroAudiappFit().getCliente().create(API_SGU.class);
     apiSGU.hacerRegistro(datosUsuario).
-            enqueue(new Callback<String>()
+            enqueue(new Callback<InfoDBAudiappi>()
                 {
                 @Override
-                public void onResponse(Call<String> llamada, Response<String> respuesta)
+                public void onResponse(@NonNull Call<InfoDBAudiappi> llamada, @NonNull Response<InfoDBAudiappi> respuesta)
                     {
-                    Toast response = Toast.makeText(getApplicationContext(), respuesta.body(), Toast.LENGTH_SHORT);
-                    int re = respuesta.code();
-                    response.show();
+                    // Sacar el mensaje de información de la respuesta
+                    InfoDBAudiappi  mensaje = respuesta.body();
+                    // Informar al usuario
+                    assert mensaje != null;     // Siempre va a ir un InfoDBAudiappi, puesto por seguridad
+                    Toast burbuja = Toast.makeText(getApplicationContext(), mensaje.getDescripcion(), Toast.LENGTH_SHORT);
+                    burbuja.show();
+                    // Si el servidor informa de fallo
+                    if(mensaje.getTag().equals("FALLO"))
+                        {
+                        // Si el fallo es porque hay algo repetido
+                        if(mensaje.getMotivo().equals("REPETIDO"))
+                            {
+                            // Si el usuario ya está registrado
+                            switch (mensaje.getDescripcion())
+                                {
+                                case Strings.usuarioYaEnBD:
+                                    botonClickado = false;  // Desclickar botón
+
+                                    // Hacer que inicie sesión a mitad del toast
+                                    new Handler().postDelayed(() -> {
+                                        Intent i = new Intent(instancia, LoginActivity.class);
+                                        startActivity(i);
+                                        finish();
+                                    }, 1000);
+                                    break;
+                                // Si el email está repetido
+                                case Strings.emailYaEnBD:
+                                    botonClickado = false;  // Desclickar botón
+                                    // Resetear edit del email
+                                    ref_edit_email.setText("");
+                                    break;
+                                // Si el nick está repetido
+                                case Strings.nickYaEnBD:
+                                    botonClickado = false;  // Desclickar botón
+                                    // Resetear edit del nick
+                                    ref_edit_nick.setText("");
+                                    break;
+                                }
+                            }
+                        // Si no (motivo = ERROR_DB), no hacer nada
+                        else    botonClickado = false;  // Desclickar botón
+                        }
+                    // Si el servidor informa de que se ha realizado el registro con éxito
+                    if(mensaje.getTag().equals("OK"))
+                        {
+                        botonClickado = false;  // Desclickar botón
+                        // Verificar que es el INSERT lo recibido (puede ser redundante)
+                        if(mensaje.getDescripcion().equals("INSERT"))
+                            {
+                            // Mandar a actividad de inicio de sesión a mitad del toast
+                            new Handler().postDelayed(() -> {
+                                Intent i = new Intent(instancia, LoginActivity.class);
+                                startActivity(i);botonClickado = false;  // Desclickar botón
+                                finish();
+                            }, 1000);
+                            }
+                        }
                     }
 
                 @Override
-                public void onFailure(Call<String> llamada, Throwable t)
+                public void onFailure(@NonNull Call<InfoDBAudiappi> llamada, @NonNull Throwable t)
                     {
-                    Toast failure = Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT);
-                    failure.show();
+                    // No se ha podido contactar con el servidor: sólo informar al usuario
+                    Toast burbuja = Toast.makeText(getApplicationContext(), Strings.errorConexionServidor, Toast.LENGTH_SHORT);
+                    burbuja.show();
+                    botonClickado = false;  // Desclickar botón
                     }
                 });
     }
 
 }
+

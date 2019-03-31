@@ -1,4 +1,4 @@
-package com.audiapp.apisgu;
+package com.audiapp.retrofit;
 
 import java.io.InputStream;
 import java.security.KeyStore;
@@ -12,13 +12,15 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
+import androidx.annotation.NonNull;
+
 // COPIADO DE: https://developer.android.com/training/articles/security-ssl?hl=ES#UnknownCa
-public class AudiappConfiCerti
+class AudiappConfiCerti
 {
 private SSLSocketFactory sslFactoria;
 private X509TrustManager trustManager;
 
-public AudiappConfiCerti(InputStream caInput) throws Exception
+public AudiappConfiCerti(@NonNull InputStream caInput) throws Exception
     {
     // Load CAs from an InputStream
     // (could be from a resource or ByteArrayInputStream or ...)
