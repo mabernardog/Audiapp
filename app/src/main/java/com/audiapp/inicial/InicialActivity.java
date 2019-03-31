@@ -86,7 +86,7 @@ protected void onCreate(Bundle savedInstanceState)
                 public void onFailure(@NonNull Call<InfoDBAudiappi> llamada, @NonNull Throwable t)
                     {
                     // No se ha podido contactar con el servidor: se irá a actividad de login
-                    new Handler().postDelayed(new SiguienteActivity(instancia, "LOGIN"), 2000);
+                    new Handler().postDelayed(new SiguienteActivity(instancia, "DECIDIR"), 2000);
                     }
                 });
         }
