@@ -8,52 +8,37 @@
     android:focusableInTouchMode="true"
     tools:context=".inicial.LoginActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/title_login"
-        app:titleMarginTop="5dp">
 
-    </androidx.appcompat.widget.Toolbar>
-
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_doLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="158dp"
-        android:layout_marginTop="54dp"
-        android:layout_marginEnd="159dp"
-        android:layout_marginBottom="240dp"
         android:enabled="false"
         android:onClick="onClickLogin"
+        android:elevation="2dp"
         android:text="@string/button_aceptar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout_login" />
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBot2Login"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerLogin"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzqLogin"
+        app:layout_constraintTop_toTopOf="@+id/guidelineBotLogin"
+        app:layout_constraintVertical_bias="0.13999999"/>
 
     <LinearLayout
         android:id="@+id/linearLayout_login"
-        android:layout_width="340dp"
-        android:layout_height="274dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginBottom="54dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:gravity="top"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/button_doLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBotLogin"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerLogin"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzqLogin"
+        app:layout_constraintTop_toTopOf="@+id/guidelineTop2Login"
+        app:layout_constraintVertical_bias="0.0">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputlayout_login_nick"
-            android:layout_width="332dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="65dp"
@@ -61,7 +46,7 @@
             android:hint="@string/hint_nick"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_login"
             app:passwordToggleDrawable="@android:drawable/ic_menu_view"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@android:color/white"
@@ -70,7 +55,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_login_nick"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:inputType="text"
                 android:maxLength="10"
                 android:maxLines="1" />
@@ -78,7 +63,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputlayout_login_password"
-            android:layout_width="332dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="75dp"
@@ -86,7 +71,7 @@
             android:hint="@string/hint_contrasenya"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputlayout_reg_email"
+            app:layout_constraintTop_toBottomOf="@+id/inputlayout_login_password"
             app:passwordToggleDrawable="@drawable/asl_password_visibility"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@android:color/white"
@@ -95,11 +80,68 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_login_password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:imeOptions="actionDone"
                 android:inputType="textPassword"
-                android:maxLength="45"/>
+                android:maxLength="45" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        android:elevation="4dp"
+        android:layout_marginBottom="29dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/title_login"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTopLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="80dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineIzqLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="40dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineDerLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="40dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBotLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="475dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBot2Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="175dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTop2Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="85dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

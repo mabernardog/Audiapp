@@ -10,32 +10,30 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="29dp"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout_registro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/title_registro"
-        app:titleMarginTop="5dp">
+        app:title="@string/title_registro" />
 
-    </androidx.appcompat.widget.Toolbar>
-
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/button_doRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:enabled="false"
         android:onClick="onClickRegistro"
         android:text="@string/button_aceptar"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineBot2"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineDer"
-        app:layout_constraintStart_toStartOf="@+id/guidelineIzq"
-        app:layout_constraintTop_toTopOf="@+id/guidelineBot"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBot2Registro"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerRegistro"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzqRegistro"
+        app:layout_constraintTop_toTopOf="@+id/guidelineBotRegistro"
         app:layout_constraintVertical_bias="0.13999999" />
 
     <LinearLayout
@@ -44,11 +42,11 @@
         android:layout_height="wrap_content"
         android:gravity="top"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineBot"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineDer"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBotRegistro"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineDerRegistro"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guidelineIzq"
-        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzqRegistro"
+        app:layout_constraintTop_toTopOf="@+id/guidelineTop2Registro"
         app:layout_constraintVertical_bias="0.0">
 
 
@@ -103,7 +101,7 @@
             android:hint="@string/hint_contrasenya"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputlayout_login_nick"
+            app:layout_constraintTop_toBottomOf="@+id/inputlayout_reg_nick"
             app:passwordToggleDrawable="@drawable/asl_password_visibility"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="@android:color/white"
@@ -120,42 +118,42 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineTop"
+        android:id="@+id/guidelineTopRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="80dp" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineIzq"
+        android:id="@+id/guidelineIzqRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="20dp" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineDer"
+        android:id="@+id/guidelineDerRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_end="20dp" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineBot"
+        android:id="@+id/guidelineBotRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="514dp" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guidelineBot2"
+        android:id="@+id/guidelineBot2Registro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_end="125dp" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
+        android:id="@+id/guidelineTop2Registro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"

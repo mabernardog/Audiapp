@@ -6,42 +6,74 @@
     android:layout_height="match_parent"
     tools:context=".inicial.ElegirInicioActivity">
 
-    <Button
-        android:id="@+id/button_signup"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_doLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="143dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="153dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
         android:onClick="onClickLogin"
         android:text="@string/button_signup"
+        app:layout_constraintBottom_toTopOf="@+id/button_doRegistrop"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toTopOf="@+id/guidelineTop2ElegirIni"
+        app:layout_constraintVertical_chainStyle="spread" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_doRegistrop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="143dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="143dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:onClick="onClickRegistro"
         android:text="@string/button_login"
+        app:elevation="2dp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineBotElegirIni"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_signup" />
+        app:layout_constraintTop_toBottomOf="@+id/button_doLogin" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/texto_elegirInicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="215dp"
-        android:layout_marginEnd="125dp"
+        android:layout_marginStart="8dp"
         android:text="@string/label_tenerCuenta"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textColor="@android:color/black"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toTopOf="@+id/guidelineTopElegirIni"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzqElegirIni" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineIzqElegirIni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="40dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTopElegirIni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="235dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineBotElegirIni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="240dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineTop2ElegirIni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="300dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
