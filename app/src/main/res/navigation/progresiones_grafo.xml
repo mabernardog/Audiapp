@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/progresiones_grafo"
+    app:startDestination="@id/elegirProgresionFragment">
+
+    <fragment
+        android:id="@+id/elegirProgresionFragment"
+        android:name="com.audiapp.progresiones.ElegirProgresionFragment"
+        android:label="elegir_progresion_fragment"
+        tools:layout="@layout/fragment_elegir_progresion" >
+        <action
+            android:id="@+id/action_elegirProgresionFragment_to_crearTonalFragment"
+            app:destination="@id/crearTonalFragment" />
+        <action
+            android:id="@+id/action_elegirProgresionFragment_to_crearLibreFragment"
+            app:destination="@id/crearLibreFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/crearTonalFragment"
+        android:name="com.audiapp.progresiones.CrearProgresionTonalFragment"
+        android:label="elegir_progresion_fragment"
+        tools:layout="@layout/fragment_crear_progresion_tonal" />
+
+    <fragment
+        android:id="@+id/crearLibreFragment"
+        android:name="com.audiapp.progresiones.CrearProgresionLibreFragment"
+        android:label="elegir_progresion_fragment"
+        tools:layout="@layout/fragment_crear_progresion_libre" />
+</navigation>
