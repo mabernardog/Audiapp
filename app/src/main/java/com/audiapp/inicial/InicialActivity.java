@@ -15,7 +15,7 @@ import com.audiapp.db.GestorDB;
 import com.audiapp.db.GestorUsuarioDB;
 import com.audiapp.modelo.InfoDBAudiappi;
 import com.audiapp.modelo.Usuario;
-import com.audiapp.placeholderfun.PlaceholderActivity;
+import com.audiapp.progresiones.GeneradorProgresionesActivity;
 
 import java.util.List;
 import java.util.Objects;
@@ -123,7 +123,7 @@ public void run()
             break;
         // Si no, si se lanzará TRABAJO crear su intent
         case "TRABAJO":
-            i = new Intent(instancia, PlaceholderActivity.class);
+            i = new Intent(instancia, GeneradorProgresionesActivity.class);
             break;
         // Si no, se lanzará crear intent para lanzar intent de DECIDIR
         default:

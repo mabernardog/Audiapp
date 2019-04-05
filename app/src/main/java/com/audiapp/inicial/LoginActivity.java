@@ -1,6 +1,5 @@
 package com.audiapp.inicial;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +20,7 @@ import com.audiapp.db.GestorUsuarioDB;
 import com.audiapp.globales.Strings;
 import com.audiapp.modelo.InfoDBAudiappi;
 import com.audiapp.modelo.Usuario;
-import com.audiapp.placeholderfun.PlaceholderActivity;
+import com.audiapp.progresiones.GeneradorProgresionesActivity;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
@@ -29,6 +28,8 @@ import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -38,7 +39,7 @@ import retrofit2.Response;
 import static android.view.inputmethod.InputMethodManager.RESULT_UNCHANGED_SHOWN;
 
 
-public class LoginActivity extends Activity
+public class LoginActivity extends AppCompatActivity
 {
 // Controlar que solo se pueda clickar una vez el botón (evitar spam de registros)
 private boolean   botonClickado = false;
@@ -56,6 +57,10 @@ private boolean   botonClickado = false;
 //      Botón enviar registro;
 @Nullable
 @BindView(R.id.button_doLogin)              Button ref_button_doLogin;
+//      Toolbar
+@Nullable
+@BindView(R.id.toolbar_login)
+Toolbar toolbar;
 
 @Override
 protected void onCreate(Bundle savedInstanceState)
@@ -63,6 +68,7 @@ protected void onCreate(Bundle savedInstanceState)
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_login);
     ButterKnife.bind(this);
+    setSupportActionBar(toolbar);
 
     definirListeners();
     }
@@ -270,7 +276,7 @@ public void onClickLogin(View v)
                         ((GestorUsuarioDB) Objects.requireNonNull(new GestorDB().acceder("Usuario"))).crear(datosUsuario);
                         }
                     // Una vez se actualiza la DB, pasar a actividad de trabajo
-                    Intent i = new Intent(instancia, PlaceholderActivity.class);
+                    Intent i = new Intent(instancia, GeneradorProgresionesActivity.class);
                     startActivity(i);
                     instancia.finish();
                     }

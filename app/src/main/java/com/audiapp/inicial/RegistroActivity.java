@@ -1,6 +1,5 @@
 package com.audiapp.inicial;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +26,8 @@ import java.util.Objects;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -36,7 +37,7 @@ import retrofit2.Response;
 import static android.view.inputmethod.InputMethodManager.RESULT_UNCHANGED_SHOWN;
 
 
-public class RegistroActivity extends Activity
+public class RegistroActivity extends AppCompatActivity
 {
 
 // Controlar que solo se pueda clickar una vez el botón (evitar spam de registros)
@@ -60,6 +61,9 @@ private boolean   botonClickado = false;
 //      Botón enviar registro;
 @Nullable
 @BindView(R.id.button_doRegistro)         Button ref_button_doRegisstro;
+//      Toolbar
+@Nullable
+@BindView(R.id.toolbar_registro)          Toolbar toolbar;
 
 
 @Override
@@ -68,6 +72,8 @@ protected void onCreate(Bundle savedInstanceState)
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_registro);
     ButterKnife.bind(this);
+    setSupportActionBar(toolbar);
+
 
     definirListeners();
     }
@@ -341,12 +347,12 @@ public void onClickRegistro(View v)
                         {
                         botonClickado = false;  // Desclickar botón
                         // Verificar que es el INSERT lo recibido (puede ser redundante)
-                        if(mensaje.getDescripcion().equals("INSERT"))
+                        if(mensaje.getMotivo().equals("INSERT"))
                             {
                             // Mandar a actividad de inicio de sesión a mitad del toast
                             new Handler().postDelayed(() -> {
                                 Intent i = new Intent(instancia, LoginActivity.class);
-                                startActivity(i);botonClickado = false;  // Desclickar botón
+                                startActivity(i);
                                 finish();
                             }, 1000);
                             }

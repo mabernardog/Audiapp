@@ -31,10 +31,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBotLogin"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerLogin"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzqLogin"
         app:layout_constraintTop_toTopOf="@+id/guidelineTop2Login"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0" >
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputlayout_login_nick"
@@ -92,15 +92,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
+        android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        android:elevation="4dp"
-        android:layout_marginBottom="29dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/title_login"/>
+        app:title="@string/title_login" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTopLogin"

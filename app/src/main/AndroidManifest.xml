@@ -16,8 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AudiappTheme">
         <activity
-            android:name=".placeholderfun.PlaceholderActivity"
-            android:label="@string/title_activity_placeholder" />
+            android:name=".progresiones.GeneradorProgresionesActivity"
+            android:label="@string/title_generar_progresion"></activity>
         <activity android:name=".inicial.RegistroActivity" />
         <activity android:name=".inicial.LoginActivity" />
         <activity android:name=".inicial.ElegirInicioActivity" />

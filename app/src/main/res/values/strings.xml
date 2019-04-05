@@ -11,7 +11,9 @@
     <string name="hint_eMail">E-mail</string>
     <string name="hint_nick">Nombre de usuario</string>
     <string name="hint_contrasenya">Contraseña</string>
-    <string name="title_activity_placeholder">PlaceholderActivity</string>
+    <string name="title_generar_progresion">Crear progresión</string>
+    <string name="button_elegir_progresionTonal">Progresión tonal</string>
+    <string name="button_elegir_progresionLibre">Progresión libre</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
