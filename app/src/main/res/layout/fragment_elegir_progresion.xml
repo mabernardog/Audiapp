@@ -2,36 +2,33 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".progresiones.ElegirProgresionFragment">
 
-    <Button
-        android:id="@+id/button"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_goProgresionTonal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClickGoTonal"
-        android:text="Button"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        android:padding="40dp"
+        android:text="@string/button_elegir_progresionTonal"
+        app:layout_constraintBottom_toTopOf="@+id/button_goProgresionLibre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/button_elegir_progresionTonal" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button2"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_goProgresionLibre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClickGoLibre"
-        android:text="Button"
+        android:padding="40dp"
+        android:text="@string/button_elegir_progresionLibre"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button"
-        tools:text="@string/button_elegir_progresionLibre" />
+        app:layout_constraintTop_toBottomOf="@+id/button_goProgresionTonal" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

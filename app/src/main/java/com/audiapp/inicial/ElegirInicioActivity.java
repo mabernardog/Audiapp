@@ -9,29 +9,25 @@ import com.audiapp.R;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class ElegirInicioActivity extends AppCompatActivity
-{
+public class ElegirInicioActivity extends AppCompatActivity {
 
-@Override
-protected void onCreate(Bundle savedInstanceState)
-    {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_elegir_inicio);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_elegir_inicio);
     }
 
-public void onClickRegistro(View v)
-    {
-    Intent i = new Intent(this, RegistroActivity.class);
+    public void onClickRegistro(View v) {
+        Intent i = new Intent(this, RegistroActivity.class);
 
-    this.startActivity(i);
-    this.finish();
+        this.startActivity(i);
+        this.finish();
     }
 
-public void onClickLogin(View v)
-    {
-    Intent i = new Intent(this, LoginActivity.class);
+    public void onClickLogin(View v) {
+        Intent i = new Intent(this, LoginActivity.class);
 
-    this.startActivity(i);
-    this.finish();
+        this.startActivity(i);
+        this.finish();
     }
 }

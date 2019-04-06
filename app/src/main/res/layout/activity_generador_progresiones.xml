@@ -12,12 +12,14 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:defaultNavHost="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_generadorProgresiones"
         app:navGraph="@navigation/progresiones_grafo" />
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar_generadorProgresiones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -28,30 +30,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/title_generar_progresion" />
-
-    <fragment
-        android:id="@+id/fragment_crearProgresionLibre"
-        android:name="com.audiapp.progresiones.CrearProgresionLibreFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="268dp" />
-
-    <fragment
-        android:id="@+id/fragment_crearProgresionTonal"
-        android:name="com.audiapp.progresiones.CrearProgresionTonalFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="59dp"
-        tools:layout_editor_absoluteY="329dp" />
-
-    <fragment
-        android:id="@+id/fragment_elegirProgresionLibre"
-        android:name="com.audiapp.progresiones.ElegirProgresionFragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="75dp"
-        tools:layout_editor_absoluteY="394dp" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

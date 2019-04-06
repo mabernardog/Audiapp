@@ -12,33 +12,28 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Usuario.class}, version=1)
-public abstract class AudiappDB extends RoomDatabase
-{
-private static AudiappDB db;
+@Database(entities = {Usuario.class}, version = 1)
+public abstract class AudiappDB extends RoomDatabase {
+    private static AudiappDB db;
 
-public abstract UsuarioDAO usuarioDAO();
+    // Constructor para crear la DB
+    public static synchronized void getDB(@NonNull Context contexto) {
+        try {
+            if (db == null) {
+                db = Room.databaseBuilder(contexto.getApplicationContext(), AudiappDB.class, "AudiappDB").build();
+            }
+        } catch (Exception ex) {
+            Log.wtf("DB", "Muerte fatal");
+        }
+    }
 
-// Constructor para crear la DB
-public static synchronized void getDB(@NonNull Context contexto)
-    {
-    try {
+    // Constructor para usar la db (no la crea nadie por aquí)
+    public static synchronized AudiappDB getDB() throws DBNotCreatedExcepction {
         if (db == null) {
-            db = Room.databaseBuilder(contexto.getApplicationContext(), AudiappDB.class, "AudiappDB").build();
+            throw new DBNotCreatedExcepction();
         }
-    }
-    catch(Exception ex)
-    {
-        Log.wtf("DB", "Muerte fatal");
-    }
+        return db;
     }
 
-// Constructor para usar la db (no la crea nadie por aquí)
-public static synchronized AudiappDB getDB() throws DBNotCreatedExcepction {
-    if(db == null)
-        {
-        throw new DBNotCreatedExcepction();
-        }
-    return db;
-    }
+    public abstract UsuarioDAO usuarioDAO();
 }
