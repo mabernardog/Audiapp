@@ -19,4 +19,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_clave_tonal">Clave</string>
+    <string name="title_tipo_tonal">Tipo</string>
+    <string name="title_inversion_tonal">Inversiones</string>
+    <string name="title_tempo_tonal">Tempo</string>
 </resources>

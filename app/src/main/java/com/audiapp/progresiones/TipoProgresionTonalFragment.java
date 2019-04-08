@@ -11,20 +11,17 @@ import com.audiapp.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 
-public class CrearProgresionLibreFragment extends Fragment {
-    private ElegirProgresionViewModel mViewModel;
+public class TipoProgresionTonalFragment extends Fragment {
 
-    public static CrearProgresionLibreFragment newInstance() {
-        return new CrearProgresionLibreFragment();
+    public static TipoProgresionTonalFragment newInstance() {
+        return new TipoProgresionTonalFragment();
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ElegirProgresionViewModel.class);
         // TODO: Use the ViewModel
     }
 
@@ -32,7 +29,7 @@ public class CrearProgresionLibreFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         // Inflar la vista
-        View vistaFragmento = inflater.inflate(R.layout.fragment_crear_progresion_libre, container, false);
+        View vistaFragmento = inflater.inflate(R.layout.fragment_tipo_progresion_tonal, container, false);
         return vistaFragmento;
     }
 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tipoProgresionTonalFragment"
+        android:title="@string/title_tipo_tonal" />
+    <item
+        android:id="@+id/inversionProgresionTonalFragment"
+        android:title="@string/title_inversion_tonal" />
+    <item
+        android:id="@+id/tonalidadProgresionTonalFragment"
+        android:title="@string/title_clave_tonal" />
+    <item
+        android:id="@+id/tempoProgresionTonalFragment"
+        android:title="@string/title_tempo_tonal" />
+</menu>

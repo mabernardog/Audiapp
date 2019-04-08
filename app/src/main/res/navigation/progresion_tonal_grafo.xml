@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/progresion_tonal_grafo"
+    app:startDestination="@id/tipoProgresionTonalFragment">
+    <fragment
+        android:id="@+id/tipoProgresionTonalFragment"
+        android:name="com.audiapp.progresiones.TipoProgresionTonalFragment"
+        android:label="fragment_tipo_progresion_tonal"
+        tools:layout="@layout/fragment_tipo_progresion_tonal" >
+        <action
+            android:id="@+id/action_tipoProgresionTonalFragment_to_inversionProgresionTonalFragment"
+            app:destination="@id/inversionProgresionTonalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inversionProgresionTonalFragment"
+        android:name="com.audiapp.progresiones.InversionProgresionTonalFragment"
+        android:label="fragment_inversion_progresion_tonal"
+        tools:layout="@layout/fragment_inversion_progresion_tonal" >
+        <action
+            android:id="@+id/action_inversionProgresionTonalFragment_to_tonalidadProgresionTonalFragment"
+            app:destination="@id/tonalidadProgresionTonalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tonalidadProgresionTonalFragment"
+        android:name="com.audiapp.progresiones.TonalidadProgresionTonalFragment"
+        android:label="fragment_tonalidad_progresion_tonal"
+        tools:layout="@layout/fragment_tonalidad_progresion_tonal" >
+        <action
+            android:id="@+id/action_tonalidadProgresionTonalFragment_to_tempoProgresionTonalFragment"
+            app:destination="@id/tempoProgresionTonalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tempoProgresionTonalFragment"
+        android:name="com.audiapp.progresiones.TempoProgresionTonalFragment"
+        android:label="fragment_tempo_progresion_tonal"
+        tools:layout="@layout/fragment_tempo_progresion_tonal" />
+</navigation>

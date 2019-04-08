@@ -10,7 +10,6 @@ import com.audiapp.R;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
@@ -46,9 +45,9 @@ public class ElegirProgresionFragment extends Fragment {
         // Bindear Butterknife
         ButterKnife.bind(this, vistaFragmento);
         // Cambiar título
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.title_generar_progresion);
+        //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.title_generar_progresion);
         // Añadir navegación
-        botonTonal.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.crearTonalFragment));
+        botonTonal.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.crearProgresionTonalFragment));
         botonLibre.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.crearLibreFragment));
         return vistaFragmento;
     }
