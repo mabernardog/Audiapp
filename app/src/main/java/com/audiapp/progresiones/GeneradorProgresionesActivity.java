@@ -20,8 +20,8 @@ public class GeneradorProgresionesActivity extends AppCompatActivity {
     @Nullable
     @BindView(R.id.toolbar_generadorProgresiones)
     Toolbar mToolbar;
-    NavController mNavController;
-    AppBarConfiguration mAppBarConfiguration;
+    private NavController mNavController;
+    private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

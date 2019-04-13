@@ -24,7 +24,7 @@ public class ElegirProgresionFragment extends Fragment {
     @BindView(R.id.button_goProgresionLibre)
     Button botonLibre;
 
-    private ElegirProgresionViewModel mViewModel;
+    private ProgresionTonalViewModel mViewModel;
 
     public static ElegirProgresionFragment newInstance() {
         return new ElegirProgresionFragment();
@@ -33,7 +33,7 @@ public class ElegirProgresionFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ElegirProgresionViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(ProgresionTonalViewModel.class);
         // TODO: Use the ViewModel
     }
 
@@ -44,10 +44,10 @@ public class ElegirProgresionFragment extends Fragment {
         View vistaFragmento = inflater.inflate(R.layout.fragment_elegir_progresion, container, false);
         // Bindear Butterknife
         ButterKnife.bind(this, vistaFragmento);
-        // Cambiar título
-        //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.title_generar_progresion);
         // Añadir navegación
+        assert botonTonal != null;
         botonTonal.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.crearProgresionTonalFragment));
+        assert botonLibre != null;
         botonLibre.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.crearLibreFragment));
         return vistaFragmento;
     }

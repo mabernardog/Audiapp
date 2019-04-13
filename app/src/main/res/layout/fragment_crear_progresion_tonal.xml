@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".progresiones.CrearProgresionTonalFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
@@ -16,7 +15,7 @@
         android:layout_marginBottom="32dp"
         android:clickable="true"
         android:focusable="true"
-        android:src="@mipmap/ic_hearing_white_48dp"
+        android:src="@drawable/ic_aceptar_progresion_tonal"
         app:elevation="2dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav_progresionTonal"
         app:layout_constraintEnd_toEndOf="parent" />

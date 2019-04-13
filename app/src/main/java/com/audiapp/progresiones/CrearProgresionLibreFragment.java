@@ -11,11 +11,9 @@ import com.audiapp.R;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
 
 
 public class CrearProgresionLibreFragment extends Fragment {
-    private ElegirProgresionViewModel mViewModel;
 
     public static CrearProgresionLibreFragment newInstance() {
         return new CrearProgresionLibreFragment();
@@ -24,7 +22,6 @@ public class CrearProgresionLibreFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ElegirProgresionViewModel.class);
         // TODO: Use the ViewModel
     }
 

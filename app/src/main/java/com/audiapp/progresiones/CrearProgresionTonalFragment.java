@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.audiapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,18 +23,25 @@ import butterknife.ButterKnife;
 
 public class CrearProgresionTonalFragment extends Fragment {
     @Nullable @BindView(R.id.bottom_nav_progresionTonal) BottomNavigationView mBottomNavigationView;
+    @Nullable @BindView(R.id.floatingActionButton)       FloatingActionButton mFloatingActionButton;
+
     private NavController mNavController;
 
-    private ElegirProgresionViewModel mViewModel;
+    private ProgresionTonalViewModel mViewModel;
 
     public static CrearProgresionTonalFragment newInstance() {
         return new CrearProgresionTonalFragment();
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mViewModel = ViewModelProviders.of(this).get(ProgresionTonalViewModel.class);
+    }
+
+    @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ElegirProgresionViewModel.class);
         // TODO: Use the ViewModel
     }
 
@@ -41,23 +49,19 @@ public class CrearProgresionTonalFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         // Inflar la vista
-        View vistaFragmento;
-        try{
-            vistaFragmento = inflater.inflate(R.layout.fragment_crear_progresion_tonal, container, false);
-        } catch (Exception e)
-        {
-            return null;
-        }
+        View vistaFragmento = inflater.inflate(R.layout.fragment_crear_progresion_tonal, container, false);
         ButterKnife.bind(this, vistaFragmento);
-        try {
-            // Determinar NavController
-            mNavController = Navigation.findNavController(vistaFragmento.findViewById(R.id.progresion_tonal_host));
-            // Hacer que el BottomNavigation lo autogestione NavigationUI
-            NavigationUI.setupWithNavController(mBottomNavigationView, mNavController);
-        } catch (Exception e)
-        {
-            return vistaFragmento;
-        }
+        // Determinar NavController
+        mNavController = Navigation.findNavController(vistaFragmento.findViewById(R.id.progresion_tonal_host));
+        // Hacer que el BottomNavigation lo autogestione NavigationUI
+        assert mBottomNavigationView != null;
+        NavigationUI.setupWithNavController(mBottomNavigationView, mNavController);
+        // Añadir onClick al botón flotante
+        assert mFloatingActionButton != null;
+        mFloatingActionButton.setOnClickListener(v -> {
+            mViewModel.getTiposProgresion().clear();
+            mViewModel.getTiposProgresion().add("holi");
+        });
         return vistaFragmento;
     }
 
