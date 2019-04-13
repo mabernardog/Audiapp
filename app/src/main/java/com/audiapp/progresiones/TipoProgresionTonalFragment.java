@@ -51,7 +51,6 @@ public class TipoProgresionTonalFragment extends Fragment {
         // Inflar la vista
         View vistaFragmento = inflater.inflate(R.layout.fragment_tipo_progresion_tonal, container, false);
         ButterKnife.bind(this, vistaFragmento);
-        ArrayList<String> activos = OperacionesTablaBotones.getBotonesActivos(mTableLayout);
         // Crear el listener para los botones
         mOnCheckedChangeListener = (buttonView, isChecked) -> {
             // Si estará activo
