@@ -1,6 +1,5 @@
 package com.audiapp.progresiones;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,8 +56,6 @@ public class TipoProgresionTonalFragment extends Fragment {
         mOnCheckedChangeListener = (buttonView, isChecked) -> {
             // Si estará activo
             if (isChecked) {
-                // Mostrarlo en negrita
-                buttonView.setTypeface(null, Typeface.BOLD);
                 // Añadirlo al view model si no estaba ya
                 boolean loContiene = false;
                 for(String texto : mViewModel.getTiposProgresion()) {
