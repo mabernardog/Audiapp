@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 
 public class TempoProgresionTonalFragment extends Fragment {
-    private ElegirProgresionViewModel mViewModel;
+    private ProgresionTonalViewModel mViewModel;
 
     public static TempoProgresionTonalFragment newInstance() {
         return new TempoProgresionTonalFragment();
@@ -23,7 +23,7 @@ public class TempoProgresionTonalFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ElegirProgresionViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(ProgresionTonalViewModel.class);
         // TODO: Use the ViewModel
     }
 

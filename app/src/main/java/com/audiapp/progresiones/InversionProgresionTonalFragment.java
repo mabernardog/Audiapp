@@ -14,7 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 
 public class InversionProgresionTonalFragment extends Fragment {
-    private ElegirProgresionViewModel mViewModel;
+    private ProgresionTonalViewModel mViewModel;
 
     public static InversionProgresionTonalFragment newInstance() {
         return new InversionProgresionTonalFragment();
@@ -23,7 +23,7 @@ public class InversionProgresionTonalFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ElegirProgresionViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(ProgresionTonalViewModel.class);
         // TODO: Use the ViewModel
     }
 
