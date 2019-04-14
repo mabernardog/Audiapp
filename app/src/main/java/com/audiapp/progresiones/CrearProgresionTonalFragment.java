@@ -1,4 +1,3 @@
-
 package com.audiapp.progresiones;
 
 import android.os.Bundle;
@@ -22,12 +21,17 @@ import butterknife.ButterKnife;
 
 
 public class CrearProgresionTonalFragment extends Fragment {
-    @Nullable @BindView(R.id.bottom_nav_progresionTonal) BottomNavigationView mBottomNavigationView;
-    @Nullable @BindView(R.id.floatingActionButton)       FloatingActionButton mFloatingActionButton;
+    @Nullable
+    @BindView(R.id.bottom_nav_progresionTonal)
+    BottomNavigationView mBottomNavigationView;
+    @Nullable
+    @BindView(R.id.floatingActionButton)
+    FloatingActionButton mFloatingActionButton;
 
     private NavController mNavController;
 
     private ProgresionTonalViewModel mViewModel;
+    private CrearProgresionTonalFragment instancia;
 
     public static CrearProgresionTonalFragment newInstance() {
         return new CrearProgresionTonalFragment();
@@ -51,6 +55,7 @@ public class CrearProgresionTonalFragment extends Fragment {
         // Inflar la vista
         View vistaFragmento = inflater.inflate(R.layout.fragment_crear_progresion_tonal, container, false);
         ButterKnife.bind(this, vistaFragmento);
+        instancia = this;
         // Determinar NavController
         mNavController = Navigation.findNavController(vistaFragmento.findViewById(R.id.progresion_tonal_host));
         // Hacer que el BottomNavigation lo autogestione NavigationUI
@@ -59,8 +64,8 @@ public class CrearProgresionTonalFragment extends Fragment {
         // Añadir onClick al botón flotante
         assert mFloatingActionButton != null;
         mFloatingActionButton.setOnClickListener(v -> {
-            mViewModel.getTiposProgresion().clear();
-            mViewModel.getTiposProgresion().add("holi");
+            // Todo: generar MIDI
+            // Todo: navegar solo si se genera el MIDI
         });
         return vistaFragmento;
     }
