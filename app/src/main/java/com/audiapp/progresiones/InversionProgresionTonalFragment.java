@@ -36,7 +36,7 @@ public class InversionProgresionTonalFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         assert getParentFragment() != null;
-        mViewModel = ViewModelProviders.of(getParentFragment()).get(ProgresionTonalViewModel.class);
+        mViewModel = ViewModelProviders.of(getParentFragment().getParentFragment()).get(ProgresionTonalViewModel.class);
     }
 
     @Override
