@@ -30,4 +30,8 @@
     <string name="type_1dominante_tonal">Una secundaria dominante</string>
     <string name="type_Xdominantes_tonal">Varias secundarias dominantes</string>
     <string name="type_napolitanas_tonal">Sextas napolitanas</string>
+    <string name="type_raiz_inversion_tonal">Posición base</string>
+    <string name="type_raizYprimera_inversion_tonal">Posición base y primera inversión</string>
+    <string name="type_cualquiera_inversion_tonal">Cualquier otra inversión</string>
+
 </resources>

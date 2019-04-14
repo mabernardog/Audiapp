@@ -6,13 +6,19 @@ import androidx.lifecycle.ViewModel;
 
 public class ProgresionTonalViewModel extends ViewModel {
     private ArrayList<String> tiposProgresion;
+    private ArrayList<String> inversionesProgresion;
 
     public ArrayList<String> getTiposProgresion() {
-        if(tiposProgresion == null) tiposProgresion = new ArrayList<>();
+        if (tiposProgresion == null) {
+            tiposProgresion = new ArrayList<>();
+        }
         return tiposProgresion;
     }
 
-    public void setTiposProgresion(ArrayList<String> tiposProgresion) {
-        this.tiposProgresion = tiposProgresion;
+    public ArrayList<String> getInversionesProgresion() {
+        if (inversionesProgresion == null) {
+            inversionesProgresion = new ArrayList<>();
+        }
+        return inversionesProgresion;
     }
 }
