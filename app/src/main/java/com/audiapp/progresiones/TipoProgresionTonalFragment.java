@@ -23,11 +23,11 @@ import utils.OperacionesTablaBotones;
 
 public class TipoProgresionTonalFragment extends Fragment {
 
+    public ProgresionTonalViewModel mViewModel;
     @Nullable
     @BindView(R.id.tablaTiposProgresionLineal)
     TableLayout mTableLayout;
     private ToggleButton.OnCheckedChangeListener mOnCheckedChangeListener;
-    public ProgresionTonalViewModel mViewModel;
 
     public static TipoProgresionTonalFragment newInstance() {
         return new TipoProgresionTonalFragment();
@@ -37,7 +37,8 @@ public class TipoProgresionTonalFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         assert getParentFragment() != null;
-        mViewModel = ViewModelProviders.of(getParentFragment()).get(ProgresionTonalViewModel.class);
+        assert getParentFragment().getParentFragment() != null;
+        mViewModel = ViewModelProviders.of(getParentFragment().getParentFragment()).get(ProgresionTonalViewModel.class);
     }
 
     @Override
@@ -57,18 +58,18 @@ public class TipoProgresionTonalFragment extends Fragment {
             if (isChecked) {
                 // Añadirlo al view model si no estaba ya
                 boolean loContiene = false;
-                for(String texto : mViewModel.getTiposProgresion()) {
-                    if(texto.contentEquals(buttonView.getText())) {
+                for (String texto : mViewModel.getTiposProgresion()) {
+                    if (texto.contentEquals(buttonView.getText())) {
                         loContiene = true;
                         break;
                     }
                 }
-                if(!loContiene) mViewModel.getTiposProgresion().add((String) buttonView.getText());
+                if (!loContiene) mViewModel.getTiposProgresion().add((String) buttonView.getText());
             } else {    // Si no
                 // Buscarlo en el view model y eliminarlo
                 int i = 0;
-                for(String tipo : mViewModel.getTiposProgresion()) {
-                    if(tipo.contentEquals(buttonView.getText())) {
+                for (String tipo : mViewModel.getTiposProgresion()) {
+                    if (tipo.contentEquals(buttonView.getText())) {
                         mViewModel.getTiposProgresion().remove(i);
                         break;
                     }
@@ -78,13 +79,13 @@ public class TipoProgresionTonalFragment extends Fragment {
         };
         assert mTableLayout != null;
         ArrayList<CheckBox> botones = OperacionesTablaBotones.getBotonesDeTabla(mTableLayout);
-        for(CheckBox boton : botones) {
+        for (CheckBox boton : botones) {
             boton.setOnCheckedChangeListener(mOnCheckedChangeListener);
         }
         // Recorrer el view model y activar los botones que toquen
-        for(String tipo : mViewModel.getTiposProgresion()) {
-            for(CheckBox boton : botones) {
-                if(tipo.contentEquals(boton.getText())) {
+        for (String tipo : mViewModel.getTiposProgresion()) {
+            for (CheckBox boton : botones) {
+                if (tipo.contentEquals(boton.getText())) {
                     boton.setChecked(true);
                     break;
                 }

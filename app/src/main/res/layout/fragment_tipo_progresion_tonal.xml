@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".progresiones.TipoProgresionTonalFragment">
@@ -15,7 +14,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
+        app:layout_constraintTop_toBottomOf="@+id/textView_tipo_tonal">
 
         <TableRow
             android:layout_width="match_parent"
@@ -24,7 +23,7 @@
             android:orientation="vertical">
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/checkBox_135triadas_tonal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/type_135triadas_tonal" />
@@ -37,7 +36,7 @@
             android:layout_marginBottom="5dp">
 
             <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/checkBox_triadas_tonal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/type_triadas_tonal" />
@@ -50,7 +49,7 @@
             android:layout_marginBottom="5dp">
 
             <CheckBox
-                android:id="@+id/checkBox3"
+                android:id="@+id/checkBox_acordes7a_tonal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/type_acordes7a_tonal" />
@@ -63,7 +62,7 @@
             android:layout_marginBottom="5dp">
 
             <CheckBox
-                android:id="@+id/checkBox4"
+                android:id="@+id/checkBox_1dominante_tonal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/type_1dominante_tonal" />
@@ -75,7 +74,7 @@
             android:layout_marginBottom="5dp">
 
             <CheckBox
-                android:id="@+id/checkBox5"
+                android:id="@+id/checkBox_Xdominantes_tonal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/type_Xdominantes_tonal" />
@@ -86,7 +85,7 @@
             android:layout_height="match_parent">
 
             <CheckBox
-                android:id="@+id/checkBox6"
+                android:id="@+id/checkBox_napolitanas_tonal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/type_napolitanas_tonal" />
@@ -96,7 +95,7 @@
     </TableLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_tipo_tonal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
