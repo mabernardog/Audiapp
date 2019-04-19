@@ -33,5 +33,17 @@
     <string name="type_raiz_inversion_tonal">Posición base</string>
     <string name="type_raizYprimera_inversion_tonal">Posición base y primera inversión</string>
     <string name="type_cualquiera_inversion_tonal">Cualquier otra inversión</string>
+    <string name="info_tonalidad_tonal">Elige las tonalidades</string>
+    <string name="text_mayor">Mayor</string>
+    <string name="text_menor">Menor</string>
+    <string name="tonalidad_C">C</string>
+    <string name="tonalidad_D">D</string>
+    <string name="tonalidad_E">E</string>
+    <string name="tonalidad_F">F</string>
+    <string name="tonalidad_G">G</string>
+    <string name="tonalidad_A">A</string>
+    <string name="tonalidad_B">B</string>
+    <string name="tonalidad_SB">#/b</string>
+
 
 </resources>
