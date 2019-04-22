@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
+
 import com.audiapp.Audiapp;
 import com.audiapp.R;
 import com.audiapp.apisgu.API_SGU;
@@ -20,7 +22,6 @@ import com.audiapp.progresiones.GeneradorProgresionesActivity;
 import java.util.List;
 import java.util.Objects;
 
-import androidx.annotation.NonNull;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

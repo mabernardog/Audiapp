@@ -4,9 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.audiapp.R;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.audiapp.R;
 
 
 public class ElegirInicioActivity extends AppCompatActivity {

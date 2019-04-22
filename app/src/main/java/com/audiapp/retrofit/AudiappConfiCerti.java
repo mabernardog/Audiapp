@@ -1,5 +1,7 @@
 package com.audiapp.retrofit;
 
+import androidx.annotation.NonNull;
+
 import java.io.InputStream;
 import java.security.KeyStore;
 import java.security.cert.Certificate;
@@ -11,8 +13,6 @@ import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
-
-import androidx.annotation.NonNull;
 
 // COPIADO DE: https://developer.android.com/training/articles/security-ssl?hl=ES#UnknownCa
 class AudiappConfiCerti {

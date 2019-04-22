@@ -3,6 +3,8 @@ package com.audiapp.retrofit;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.audiapp.globales.Strings;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,7 +12,6 @@ import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 
-import androidx.annotation.NonNull;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

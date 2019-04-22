@@ -1,11 +1,11 @@
 package com.audiapp.retrofit;
 
+import androidx.annotation.NonNull;
+
 import com.audiapp.globales.Strings;
 
 import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLSession;
-
-import androidx.annotation.NonNull;
 
 // Solo usado en testeos
 class AudiappHostnameVerifier implements HostnameVerifier {

@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class TonalidadProgresionTonalFragment extends Fragment {
+class TonalidadProgresionTonalFragment extends Fragment {
     @Nullable
     @BindView(R.id.tablaTonalidadesProgresionLineal)
     TableLayout mTableLayout;

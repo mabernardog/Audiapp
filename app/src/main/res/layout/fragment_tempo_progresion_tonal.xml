@@ -41,102 +41,95 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="Autofill" />
 
-    <FrameLayout
-        android:layout_width="0dp"
+
+    <ScrollView
+        android:id="@+id/rbtnGSVTempo"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:scrollbarStyle="insideOverlay"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_eleccion_tempo">
 
-        <ScrollView
-            android:id="@+id/rbtnGSVTempo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:scrollbarStyle="insideOverlay"
-            app:layout_constraintTop_toBottomOf="@+id/btn_eleccion_tempo">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rbtnGCLTempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/rbtnGCLTempo"
+            <RadioGroup
+                android:id="@+id/rbtnG_tempo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp">
+                android:layout_marginStart="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                <RadioGroup
-                    android:id="@+id/rbtnG_tempo"
+                <RadioButton
+                    android:id="@+id/rbtn_grave"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_weight="1"
+                    android:text="@string/type_grave_tempo" />
 
-                    <RadioButton
-                        android:id="@+id/rbtn_grave"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/type_grave_tempo" />
+                <RadioButton
+                    android:id="@+id/rbtn_largo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/type_largo_tempo" />
 
-                    <RadioButton
-                        android:id="@+id/rbtn_largo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/type_largo_tempo" />
+                <RadioButton
+                    android:id="@+id/rbtn_lento"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/type_lento_tempo" />
 
-                    <RadioButton
-                        android:id="@+id/rbtn_lento"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/type_lento_tempo" />
+                <RadioButton
+                    android:id="@+id/rbtn_adagio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/type_adagio_tempo" />
 
-                    <RadioButton
-                        android:id="@+id/rbtn_adagio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/type_adagio_tempo" />
+                <RadioButton
+                    android:id="@+id/rbtn_andante"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/type_andante_tempo" />
 
-                    <RadioButton
-                        android:id="@+id/rbtn_andante"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/type_andante_tempo" />
+                <RadioButton
+                    android:id="@+id/rbtn_allegretto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/type_allegretto_tempo" />
 
-                    <RadioButton
-                        android:id="@+id/rbtn_allegretto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/type_allegretto_tempo" />
+                <RadioButton
+                    android:id="@+id/rbtn_allegro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/type_allegro_tempo" />
 
-                    <RadioButton
-                        android:id="@+id/rbtn_allegro"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/type_allegro_tempo" />
+                <RadioButton
+                    android:id="@+id/rbtn_presto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/type_presto_tempo" />
 
-                    <RadioButton
-                        android:id="@+id/rbtn_presto"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/type_presto_tempo" />
-
-                    <RadioButton
-                        android:id="@+id/rbtn_prestissimo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/type_prestissimo_tempo" />
-                </RadioGroup>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </ScrollView>
-    </FrameLayout>
+                <RadioButton
+                    android:id="@+id/rbtn_prestissimo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/type_prestissimo_tempo" />
+            </RadioGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

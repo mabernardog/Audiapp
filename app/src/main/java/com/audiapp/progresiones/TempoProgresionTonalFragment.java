@@ -24,8 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class TempoProgresionTonalFragment extends Fragment {
-    public ProgresionTonalViewModel mViewModel;
+class TempoProgresionTonalFragment extends Fragment {
     @Nullable
     @BindView(R.id.rbtnG_tempo)
     RadioGroup mRadioGroup;
@@ -35,6 +34,7 @@ public class TempoProgresionTonalFragment extends Fragment {
     @Nullable
     @BindView(R.id.edit_tempo)
     EditText mEditText;
+    private ProgresionTonalViewModel mViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

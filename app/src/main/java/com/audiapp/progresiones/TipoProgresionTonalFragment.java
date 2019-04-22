@@ -22,17 +22,12 @@ import butterknife.ButterKnife;
 import utils.OperacionesTablaBotones;
 
 
-public class TipoProgresionTonalFragment extends Fragment {
+class TipoProgresionTonalFragment extends Fragment {
 
-    public ProgresionTonalViewModel mViewModel;
     @Nullable
     @BindView(R.id.tablaTiposProgresionLineal)
     TableLayout mTableLayout;
-    private ToggleButton.OnCheckedChangeListener mOnCheckedChangeListener;
-
-    public static TipoProgresionTonalFragment newInstance() {
-        return new TipoProgresionTonalFragment();
-    }
+    private ProgresionTonalViewModel mViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,7 +49,7 @@ public class TipoProgresionTonalFragment extends Fragment {
         View vistaFragmento = inflater.inflate(R.layout.fragment_tipo_progresion_tonal, container, false);
         ButterKnife.bind(this, vistaFragmento);
         // Crear el listener para los botones
-        mOnCheckedChangeListener = (buttonView, isChecked) -> {
+        ToggleButton.OnCheckedChangeListener mOnCheckedChangeListener = (buttonView, isChecked) -> {
             // Si estará activo
             if (isChecked) {
                 // Añadirlo al view model si no estaba ya

@@ -21,7 +21,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class CrearProgresionTonalFragment extends Fragment {
+class CrearProgresionTonalFragment extends Fragment {
     @Nullable
     @BindView(R.id.bottom_nav_progresionTonal)
     BottomNavigationView mBottomNavigationView;
@@ -29,19 +29,11 @@ public class CrearProgresionTonalFragment extends Fragment {
     @BindView(R.id.floatingActionButton)
     FloatingActionButton mFloatingActionButton;
 
-    private NavController mNavController;
-
-    private ProgresionTonalViewModel mViewModel;
-    private CrearProgresionTonalFragment instancia;
-
-    public static CrearProgresionTonalFragment newInstance() {
-        return new CrearProgresionTonalFragment();
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ProgresionTonalViewModel.class);
+        ProgresionTonalViewModel mViewModel = ViewModelProviders.of(this).get(ProgresionTonalViewModel.class);
     }
 
     @Override
@@ -55,9 +47,8 @@ public class CrearProgresionTonalFragment extends Fragment {
         // Inflar la vista
         View vistaFragmento = inflater.inflate(R.layout.fragment_crear_progresion_tonal, container, false);
         ButterKnife.bind(this, vistaFragmento);
-        instancia = this;
         // Determinar NavController
-        mNavController = Navigation.findNavController(vistaFragmento.findViewById(R.id.progresion_tonal_host));
+        NavController mNavController = Navigation.findNavController(vistaFragmento.findViewById(R.id.progresion_tonal_host));
         // Hacer que el BottomNavigation lo autogestione NavigationUI
         assert mBottomNavigationView != null;
         NavigationUI.setupWithNavController(mBottomNavigationView, mNavController);

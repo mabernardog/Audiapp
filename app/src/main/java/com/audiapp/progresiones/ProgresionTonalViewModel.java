@@ -6,7 +6,7 @@ import com.audiapp.modelo.Tempo;
 
 import java.util.ArrayList;
 
-public class ProgresionTonalViewModel extends ViewModel {
+class ProgresionTonalViewModel extends ViewModel {
     private ArrayList<String> tiposProgresion;
     private ArrayList<String> inversionesProgresion;
     private ArrayList<ArrayList<String>> tonalidadesProgresion; // El 1er elemento representa a las mayores, el 2º a las menores
@@ -62,10 +62,6 @@ public class ProgresionTonalViewModel extends ViewModel {
             return false;
         }
         // Validar que haya alguna tonalidad mayor o menor en la lista
-        if (tonalidadesProgresion.get(0).isEmpty() && tonalidadesProgresion.get(1).isEmpty()) {
-            return false;
-        }
-        // Si no se sale por algún if anterior, la progresión es sintetizable
-        return true;
+        return !tonalidadesProgresion.get(0).isEmpty() || !tonalidadesProgresion.get(1).isEmpty();// Si no se sale por algún if anterior, la progresión es sintetizable
     }
 }

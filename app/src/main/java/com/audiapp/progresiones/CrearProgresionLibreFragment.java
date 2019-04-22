@@ -1,4 +1,3 @@
-
 package com.audiapp.progresiones;
 
 import android.os.Bundle;
@@ -13,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.audiapp.R;
 
 
-public class CrearProgresionLibreFragment extends Fragment {
+class CrearProgresionLibreFragment extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
