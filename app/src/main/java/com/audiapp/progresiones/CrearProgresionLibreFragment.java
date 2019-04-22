@@ -6,18 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.audiapp.R;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.audiapp.R;
+
 
 public class CrearProgresionLibreFragment extends Fragment {
-
-    public static CrearProgresionLibreFragment newInstance() {
-        return new CrearProgresionLibreFragment();
-    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

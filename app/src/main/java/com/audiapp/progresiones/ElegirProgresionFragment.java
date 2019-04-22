@@ -6,13 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.audiapp.R;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
+
+import com.audiapp.R;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -26,15 +27,10 @@ public class ElegirProgresionFragment extends Fragment {
 
     private ProgresionTonalViewModel mViewModel;
 
-    public static ElegirProgresionFragment newInstance() {
-        return new ElegirProgresionFragment();
-    }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = ViewModelProviders.of(this).get(ProgresionTonalViewModel.class);
-        // TODO: Use the ViewModel
     }
 
     @Override

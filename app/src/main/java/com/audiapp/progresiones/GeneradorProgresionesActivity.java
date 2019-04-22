@@ -3,8 +3,6 @@ package com.audiapp.progresiones;
 
 import android.os.Bundle;
 
-import com.audiapp.R;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,6 +10,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.audiapp.R;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

@@ -8,14 +8,15 @@ import android.widget.CheckBox;
 import android.widget.TableLayout;
 import android.widget.ToggleButton;
 
-import com.audiapp.R;
-
-import java.util.ArrayList;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
+
+import com.audiapp.R;
+
+import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import utils.OperacionesTablaBotones;
@@ -28,14 +29,11 @@ public class InversionProgresionTonalFragment extends Fragment {
     TableLayout mTableLayout;
     private ToggleButton.OnCheckedChangeListener mOnCheckedChangeListener;
 
-    public static InversionProgresionTonalFragment newInstance() {
-        return new InversionProgresionTonalFragment();
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         assert getParentFragment() != null;
+        assert getParentFragment().getParentFragment() != null;
         mViewModel = ViewModelProviders.of(getParentFragment().getParentFragment()).get(ProgresionTonalViewModel.class);
     }
 
