@@ -36,13 +36,17 @@
     <string name="text_mayor">Mayor</string>
     <string name="text_menor">Menor</string>
     <string name="tonalidad_C">C</string>
+    <string name="tonalidad_CDSB">C#/Db</string>
     <string name="tonalidad_D">D</string>
+    <string name="tonalidad_DESB">D#/Eb</string>
     <string name="tonalidad_E">E</string>
     <string name="tonalidad_F">F</string>
+    <string name="tonalidad_FGSB">F#/Gb</string>
     <string name="tonalidad_G">G</string>
+    <string name="tonalidad_GASB">G#/Ab</string>
     <string name="tonalidad_A">A</string>
+    <string name="tonalidad_ABSB">A#/Bb</string>
     <string name="tonalidad_B">B</string>
-    <string name="tonalidad_SB">#/b</string>
     <string name="option_tempo_manual">Manual</string>
     <string name="option_tempo_prefab">Predefinido</string>
     <string name="type_grave_tempo">Grave</string>
@@ -54,7 +58,5 @@
     <string name="type_allegro_tempo">Allegro</string>
     <string name="type_presto_tempo">Presto</string>
     <string name="type_prestissimo_tempo">Prestissimo</string>
-    <string name="text_tempo">Tempo</string>
-
 
 </resources>

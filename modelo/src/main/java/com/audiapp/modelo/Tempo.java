@@ -22,15 +22,35 @@ public class Tempo {
     // Constructor: dada la clasificación, le da los PPMs
     public Tempo(String clasificacion) {
         this.clasificacion = clasificacion;
-        if (clasificacion.equals("Largo")) ppm = 20;
-        else if (clasificacion.equals("Grave")) ppm = 40;
-        else if (clasificacion.equals("Lento")) ppm = 50;
-        else if (clasificacion.equals("Adagio")) ppm = 71;
-        else if (clasificacion.equals("Andante")) ppm = 92;
-        else if (clasificacion.equals("Allegretto")) ppm = 116;
-        else if (clasificacion.equals("Allegro")) ppm = 139;
-        else if (clasificacion.equals("Presto")) ppm = 184;
-        else if (clasificacion.equals("Prestissimo")) ppm = 200;
+        switch (clasificacion) {
+            case "Largo":
+                ppm = 20;
+                break;
+            case "Grave":
+                ppm = 40;
+                break;
+            case "Lento":
+                ppm = 50;
+                break;
+            case "Adagio":
+                ppm = 71;
+                break;
+            case "Andante":
+                ppm = 92;
+                break;
+            case "Allegretto":
+                ppm = 116;
+                break;
+            case "Allegro":
+                ppm = 139;
+                break;
+            case "Presto":
+                ppm = 184;
+                break;
+            case "Prestissimo":
+                ppm = 200;
+                break;
+        }
 
     }
 
