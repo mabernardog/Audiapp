@@ -51,4 +51,21 @@ public class ProgresionTonalViewModel extends ViewModel {
     public void setTempo(Tempo tempo) {
         this.tempo = tempo;
     }
+
+    public boolean validar() {
+        // Validar el uso de cada uno una vez
+        if (tiposProgresion == null || inversionesProgresion == null || tonalidadesProgresion == null || tempo == null) {
+            return false;
+        }
+        // Validar que haya algo en los tipos e inversiones de la progresión
+        if (tiposProgresion.isEmpty() || inversionesProgresion.isEmpty()) {
+            return false;
+        }
+        // Validar que haya alguna tonalidad mayor o menor en la lista
+        if (tonalidadesProgresion.get(0).isEmpty() && tonalidadesProgresion.get(1).isEmpty()) {
+            return false;
+        }
+        // Si no se sale por algún if anterior, la progresión es sintetizable
+        return true;
+    }
 }
