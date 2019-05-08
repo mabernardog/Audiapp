@@ -7,33 +7,44 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.audiapp.R;
+import com.audiapp.midigen.MidiGen;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.io.File;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-class CrearProgresionTonalFragment extends Fragment {
+class EjercicioPorOpcionesFragment extends Fragment {
     @Nullable
     @BindView(R.id.bottom_nav_progresionTonal)
     BottomNavigationView mBottomNavigationView;
     @Nullable
     @BindView(R.id.floatingActionButton)
     FloatingActionButton mFloatingActionButton;
+    @Nullable
+    @BindView(R.id.toolbar_tonal)
+    Toolbar toolbar;
+
+    private ProgresionTonalViewModel mViewModel;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ProgresionTonalViewModel mViewModel = ViewModelProviders.of(this).get(ProgresionTonalViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(ProgresionTonalViewModel.class);
     }
 
     @Override
@@ -45,18 +56,26 @@ class CrearProgresionTonalFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         // Inflar la vista
-        View vistaFragmento = inflater.inflate(R.layout.fragment_crear_progresion_tonal, container, false);
+        View vistaFragmento = inflater.inflate(R.layout.fragment_ejercicio_por_opciones, container, false);
         ButterKnife.bind(this, vistaFragmento);
         // Determinar NavController
-        NavController mNavController = Navigation.findNavController(vistaFragmento.findViewById(R.id.progresion_tonal_host));
+        //SIN SINGLEACTIVITY NavController mNavController = Navigation.findNavController(vistaFragmento.findViewById(R.id.progresion_tonal_host));
+        NavController mNavControllerToolbar = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.general_host);
+        // Hacer que el mToolbar lo autogestione NavigationUI
+        AppBarConfiguration mAppBarConfiguration = new AppBarConfiguration.Builder(mNavControllerToolbar.getGraph()).build();
+        assert toolbar != null;
+        NavigationUI.setupWithNavController(toolbar, mNavControllerToolbar, mAppBarConfiguration);
         // Hacer que el BottomNavigation lo autogestione NavigationUI
         assert mBottomNavigationView != null;
-        NavigationUI.setupWithNavController(mBottomNavigationView, mNavController);
+        NavController mNavControllerBotNav = Navigation.findNavController(vistaFragmento.findViewById(R.id.progresion_tonal_host));
+        NavigationUI.setupWithNavController(mBottomNavigationView, mNavControllerBotNav);
         // Añadir onClick al botón flotante
         assert mFloatingActionButton != null;
         mFloatingActionButton.setOnClickListener(v -> {
             // Todo: generar MIDI
             // Todo: navegar solo si se genera el MIDI
+            MidiGen.generarTestEn((new File(Objects.requireNonNull(getContext()).getFilesDir(), "teste.mid").getPath()));
+            Navigation.findNavController(vistaFragmento).navigate(R.id.action_crearProgresionTonal_to_reproductor);
         });
         return vistaFragmento;
     }

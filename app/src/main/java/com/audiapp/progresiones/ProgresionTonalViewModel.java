@@ -52,13 +52,13 @@ class ProgresionTonalViewModel extends ViewModel {
         this.tempo = tempo;
     }
 
-    public boolean validar() {
+    public boolean esValido() {
         // Validar el uso de cada uno una vez
         if (tiposProgresion == null || inversionesProgresion == null || tonalidadesProgresion == null || tempo == null) {
             return false;
         }
         // Validar que haya algo en los tipos e inversiones de la progresión
-        if (tiposProgresion.isEmpty() || inversionesProgresion.isEmpty()) {
+        if (tiposProgresion.isEmpty() && inversionesProgresion.isEmpty()) {
             return false;
         }
         // Validar que haya alguna tonalidad mayor o menor en la lista

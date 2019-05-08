@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/general_grafo"
+    app:startDestination="@id/inicialActivity">
+
+    <fragment
+        android:id="@+id/inicialActivity"
+        android:name="com.audiapp.inicial.InicialFragment"
+        android:label="activity_inicial"
+        tools:layout="@layout/fragment_inicial" >
+        <action
+            android:id="@+id/action_inicialActivity_to_elegirInicio"
+            app:destination="@id/elegirInicioFragment"
+            app:popUpTo="@id/inicialActivity"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_inicialActivity_to_login"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/inicialActivity"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_inicialActivity_to_funcionalidadApp"
+            app:destination="@id/funcionalidad_app_grafo"
+            app:popUpTo="@id/inicialActivity"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/elegirInicioFragment"
+        android:name="com.audiapp.inicial.ElegirInicioFragment"
+        android:label="activity_elegir_inicio"
+        tools:layout="@layout/fragment_elegir_inicio" >
+        <action
+            android:id="@+id/action_elegirInicio_to_login"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_elegirInicio_to_registro"
+            app:destination="@id/registroFragment" />
+        <action
+            android:id="@+id/action_elegirInicio_to_funcionalidadApp"
+            app:destination="@+id/funcionalidad_app_grafo" />
+    </fragment>
+    <fragment
+        android:id="@+id/registroFragment"
+        android:name="com.audiapp.inicial.RegistroFragment"
+        android:label="@string/title_registro"
+        tools:layout="@layout/fragment_registro" >
+        <action
+            android:id="@+id/action_registro_to_login"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.audiapp.inicial.LoginFragment"
+        android:label="@string/title_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_to_funcionalidadApp"
+            app:destination="@id/funcionalidad_app_grafo" />
+    </fragment>
+
+    <navigation android:id="@+id/funcionalidad_app_grafo"
+        app:startDestination="@id/elegirProgresionFragment">
+        <fragment
+            android:id="@+id/elegirProgresionFragment"
+            android:name="com.audiapp.inicial.ElegirModuloFragment"
+            android:label="@string/title_generar_progresion"
+            tools:layout="@layout/fragment_elegir_modulo">
+            <action
+                android:id="@+id/action_elegirProgresion_to_crearLibre"
+                app:destination="@id/crearLibreFragment"
+                app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" />
+            <action
+                android:id="@+id/action_elegirProgresion_to_crearProgresionTonal"
+                app:destination="@id/ejercicioPorOpcionesFragment" />
+            <argument
+                android:name="tipoUsuario"
+                app:argType="com.audiapp.modelo.TipoUsuario" />
+        </fragment>
+        <fragment
+            android:id="@+id/crearLibreFragment"
+            android:name="com.audiapp.progresiones.CrearProgresionLibreFragment"
+            android:label="@string/title_crear_progresionLibre"
+            tools:layout="@layout/fragment_crear_progresion_libre">
+            <action
+                android:id="@+id/action_crearLibre_to_reproductor"
+                app:destination="@id/reproductorFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/ejercicioPorOpcionesFragment"
+            android:name="com.audiapp.progresiones.EjercicioPorOpcionesFragment"
+            android:label="@string/title_crear_progresionTonal"
+            tools:layout="@layout/fragment_ejercicio_por_opciones">
+            <action
+                android:id="@+id/action_crearProgresionTonal_to_reproductor"
+                app:destination="@id/reproductorFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/reproductorFragment"
+            android:name="com.audiapp.reproductor.ReproductorFragment"
+            android:label="@string/title_reproductor"
+            tools:layout="@layout/fragment_reproductor" />
+    </navigation>
+</navigation>

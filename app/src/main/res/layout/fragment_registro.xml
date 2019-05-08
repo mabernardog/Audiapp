@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".inicial.RegistroActivity">
+    tools:context=".inicial.RegistroFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_registro"
@@ -15,18 +15,16 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/title_registro" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_doRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:enabled="false"
-        android:onClick="onClickRegistro"
         android:text="@string/button_aceptar"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBot2Registro"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerRegistro"

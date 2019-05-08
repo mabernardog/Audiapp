@@ -4,46 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".inicial.ElegirInicioActivity">
+    tools:context=".inicial.ElegirInicioFragment">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_doLogin"
+        android:id="@+id/button_goLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:onClick="onClickLogin"
         android:text="@string/button_signup"
-        app:layout_constraintBottom_toTopOf="@+id/button_doRegistrop"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guidelineTop2ElegirIni"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzqElegirIni2"
+        app:layout_constraintTop_toBottomOf="@+id/texto_elegirInicio"
         app:layout_constraintVertical_chainStyle="spread" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_doRegistrop"
+        android:id="@+id/button_goRegistro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
-        android:onClick="onClickRegistro"
         android:text="@string/button_login"
         app:elevation="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/guidelineBotElegirIni"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_doLogin" />
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzqElegirIni2"
+        app:layout_constraintTop_toBottomOf="@+id/button_goLogin" />
 
     <TextView
         android:id="@+id/texto_elegirInicio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/label_tenerCuenta"
-        android:textColor="@android:color/black"
         android:textSize="26sp"
         app:layout_constraintBottom_toTopOf="@+id/guidelineTopElegirIni"
         app:layout_constraintStart_toStartOf="@+id/guidelineIzqElegirIni" />
@@ -56,18 +47,25 @@
         app:layout_constraintGuide_begin="40dp" />
 
     <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineIzqElegirIni2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="90dp" />
+
+    <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTopElegirIni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="235dp" />
+        app:layout_constraintGuide_begin="175dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineBotElegirIni"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="240dp" />
+        app:layout_constraintGuide_end="144dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTop2ElegirIni"
@@ -75,5 +73,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="300dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_goAnonimo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/button_accesoAnonimo"
+        app:layout_constraintStart_toStartOf="@+id/guidelineIzqElegirIni2"
+        app:layout_constraintTop_toBottomOf="@+id/button_goRegistro" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,8 +6,19 @@
     android:layout_height="match_parent"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".inicial.LoginActivity">
+    tools:context=".inicial.LoginFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_doLogin"
@@ -15,7 +26,6 @@
         android:layout_height="wrap_content"
         android:elevation="2dp"
         android:enabled="false"
-        android:onClick="onClickLogin"
         android:text="@string/button_aceptar"
         app:layout_constraintBottom_toTopOf="@+id/guidelineBot2Login"
         app:layout_constraintEnd_toStartOf="@+id/guidelineDerLogin"
@@ -86,19 +96,6 @@
                 android:maxLength="45" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/title_login" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineTopLogin"

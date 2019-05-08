@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".progresiones.CrearProgresionTonalFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_tonal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/Base.ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
@@ -14,9 +26,9 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:clickable="true"
+        android:elevation="8dp"
         android:focusable="true"
         android:src="@drawable/ic_aceptar_progresion_tonal"
-        app:elevation="2dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav_progresionTonal"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -39,6 +51,6 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav_progresionTonal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_tonal"
         app:navGraph="@navigation/progresion_tonal_grafo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

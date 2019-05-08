@@ -7,15 +7,17 @@
     <string name="label_tenerCuenta">¿Tienes una cuenta?</string>
     <string name="button_signup">Sí, sí tengo</string>
     <string name="button_login">No, no tengo</string>
+    <string name="button_accesoAnonimo">Accederé sin cuenta</string>
     <string name="button_aceptar">Aceptar</string>
     <string name="hint_eMail">E-mail</string>
     <string name="hint_nick">Nombre de usuario</string>
     <string name="hint_contrasenya">Contraseña</string>
     <string name="title_generar_progresion">Crear progresión</string>
-    <string name="button_elegir_progresionTonal">Progresión tonal</string>
-    <string name="button_elegir_progresionLibre">Progresión libre</string>
+    <string name="button_modulo_crearProgresion">Crear progresión</string>
+    <string name="button_modulo_adivinar">Adivinar</string>
     <string name="title_crear_progresionTonal">Crear progresión tonal</string>
     <string name="title_crear_progresionLibre">Crear progresión libre</string>
+    <string name="title_reproductor">Reproductor</string>
     <string name="title_clave_tonal">Clave</string>
     <string name="info_tonalidad_tonal">Elige las tonalidades</string>
     <string name="title_tipo_tonal">Tipo</string>
@@ -58,5 +60,6 @@
     <string name="type_allegro_tempo">Allegro</string>
     <string name="type_presto_tempo">Presto</string>
     <string name="type_prestissimo_tempo">Prestissimo</string>
+    <string name="info_progresionTonalViewModel_invalido">Completa la configuración de la progresión cumplimentando todos los campos de las pestañas</string>
 
 </resources>

@@ -4,30 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".progresiones.ElegirProgresionFragment">
+    tools:context=".inicial.ElegirModuloFragment">
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_goProgresionTonal"
+        android:id="@+id/button_goCrearProgresion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="40dp"
-        android:text="@string/button_elegir_progresionTonal"
-        app:layout_constraintBottom_toTopOf="@+id/button_goProgresionLibre"
+        android:text="@string/button_modulo_crearProgresion"
+        app:layout_constraintBottom_toTopOf="@+id/button_goAdivinar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_goProgresionLibre"
+        android:id="@+id/button_goAdivinar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="40dp"
-        android:text="@string/button_elegir_progresionLibre"
+        android:text="@string/button_modulo_adivinar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_goProgresionTonal" />
+        app:layout_constraintTop_toBottomOf="@+id/button_goCrearProgresion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,1 +1,1 @@
-include ':app', ':globales', ':modelo'
+include ':app', ':globales', ':modelo', ':lib'

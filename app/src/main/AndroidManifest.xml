@@ -15,22 +15,15 @@
         android:roundIcon="@mipmap/ic_icono_round"
         android:supportsRtl="true"
         android:theme="@style/AudiappTheme">
-        <activity
-            android:name=".progresiones.GeneradorProgresionesActivity"
-            android:label="@string/title_generar_progresion" />
-        <activity android:name=".inicial.RegistroActivity" />
-        <activity android:name=".inicial.LoginActivity" />
-        <activity android:name=".inicial.ElegirInicioActivity" />
-        <activity
-            android:name=".inicial.InicialActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AudiappTheme.OpeningTheme">
+        <activity android:name=".inicial.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <service android:name=".reproductor.ServicioReproductor" />
     </application>
 
 </manifest>

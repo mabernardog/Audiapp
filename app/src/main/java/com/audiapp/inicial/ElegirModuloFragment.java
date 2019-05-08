@@ -1,4 +1,4 @@
-package com.audiapp.progresiones;
+package com.audiapp.inicial;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,17 +12,20 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import com.audiapp.R;
+import com.audiapp.modelo.TipoUsuario;
+
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-class ElegirProgresionFragment extends Fragment {
+class ElegirModuloFragment extends Fragment {
     @Nullable
-    @BindView(R.id.button_goProgresionTonal)
-    Button botonTonal;
+    @BindView(R.id.button_goCrearProgresion)
+    Button botonCrear;
     @Nullable
-    @BindView(R.id.button_goProgresionLibre)
-    Button botonLibre;
+    @BindView(R.id.button_goAdivinar)
+    Button botonAdivinar;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -33,14 +36,18 @@ class ElegirProgresionFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         // Inflar la vista
-        View vistaFragmento = inflater.inflate(R.layout.fragment_elegir_progresion, container, false);
+        View vistaFragmento = inflater.inflate(R.layout.fragment_elegir_modulo, container, false);
         // Bindear Butterknife
         ButterKnife.bind(this, vistaFragmento);
+        TipoUsuario tipoUsuario = ElegirModuloFragmentArgs.fromBundle(Objects.requireNonNull(getArguments())).getTipoUsuario();
         // Añadir navegación
-        assert botonTonal != null;
-        botonTonal.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.crearProgresionTonalFragment));
-        assert botonLibre != null;
-        botonLibre.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.crearLibreFragment));
+        assert botonCrear != null;
+        botonCrear.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.ejercicioPorOpcionesFragment));
+        assert botonAdivinar != null;
+        botonAdivinar.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.crearLibreFragment));
+        if (tipoUsuario == TipoUsuario.ANONIMO) {
+            botonAdivinar.setEnabled(false);
+        }
         return vistaFragmento;
     }
 

@@ -123,8 +123,8 @@ class TempoProgresionTonalFragment extends Fragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                // Añadir al ViewModel
-                mViewModel.setTempo(new Tempo(Integer.parseInt(s.toString())));
+                if (s.toString().equals("")) mViewModel.setTempo(null);
+                else mViewModel.setTempo(new Tempo(Integer.parseInt(s.toString())));
             }
         });
         return vistaFragmento;

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <ImageButton
+        android:id="@+id/player_atras"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="?attr/selectableItemBackground"
+        app:srcCompat="@drawable/ic_player_atras" />
+
+    <ImageButton
+        android:id="@+id/player_play_pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="?attr/selectableItemBackground"
+        app:srcCompat="@drawable/ic_player_play" />
+
+    <ImageButton
+        android:id="@+id/player_adelante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:background="?attr/selectableItemBackground"
+        app:srcCompat="@drawable/ic_player_adelante" />
+</merge>

@@ -1,14 +1,18 @@
 package com.audiapp.inicial;
 
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.audiapp.Audiapp;
 import com.audiapp.R;
@@ -17,7 +21,6 @@ import com.audiapp.db.GestorDB;
 import com.audiapp.db.GestorUsuarioDB;
 import com.audiapp.modelo.InfoDBAudiappi;
 import com.audiapp.modelo.Usuario;
-import com.audiapp.progresiones.GeneradorProgresionesActivity;
 
 import java.util.List;
 import java.util.Objects;
@@ -26,31 +29,41 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class InicialActivity extends Activity {
+import static com.audiapp.R.color.colorBackgroundInicial;
+
+public class InicialFragment extends Fragment {
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i("App", "Aplicación iniciada");
+        // Cambiar tema de la actividad contenedora
+        Objects.requireNonNull(getActivity()).setTheme(R.style.AudiappTheme_OpeningTheme);
         // Ocultar barra de título
         //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         // Poner en pantalla completa
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        Objects.requireNonNull(getActivity()).getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // Asociar actividad al diseño
-        setContentView(R.layout.activity_inicial);
-        // Esconder barra de acción
-        try {
-            Objects.requireNonNull(getActionBar()).hide();
-        } catch (NullPointerException npe) {
-            Log.wtf("InicialActivity", "No hay barra de acción");
-        }
+        View vistaFragmento = inflater.inflate(R.layout.fragment_inicial, container, false);
+        // Cambiar colores
+        vistaFragmento.setBackgroundColor(getResources().getColor(colorBackgroundInicial));
         /* Decidir siguiente actividad a lanzar */
         // Leer la tabla Usuario para ver si hay alguno ya creado
         List<Usuario> listaUsuarios = ((GestorUsuarioDB) Objects.requireNonNull(new GestorDB().acceder("Usuario"))).leerTodos();
         // Si hay usuarios en la lista
         assert listaUsuarios != null;
         if (listaUsuarios.size() > 0) {
-            final InicialActivity instancia = this;
+            final InicialFragment instancia = this;
             // Intentar logear con el primer usuario que haya (en teoría, es el único que hay)
             API_SGU apiSGU = Audiapp.getInstancia().getRetroAudiappFit().getCliente().create(API_SGU.class);
             apiSGU.hacerLogin(listaUsuarios.get(0)).
@@ -85,38 +98,44 @@ public class InicialActivity extends Activity {
         else {
             new Handler().postDelayed(new SiguienteActivity(this, "DECIDIR"), 5000);
         }
+        return vistaFragmento;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Objects.requireNonNull(getActivity()).getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 }
 
 class SiguienteActivity implements Runnable {
-    private final InicialActivity instancia;
+    private final InicialFragment instancia;
     private final String actALanzar;
 
     // Constructor en el caso de que no haya una lista de usuarios
-    SiguienteActivity(InicialActivity param_instancia, String param_actALanzar) {
+    SiguienteActivity(InicialFragment param_instancia, String param_actALanzar) {
         instancia = param_instancia;
         actALanzar = param_actALanzar;
     }
 
     @Override
     public void run() {
-        Intent i;
+        // Usar el tema anterior
+        Objects.requireNonNull(instancia.getActivity()).setTheme(R.style.AudiappTheme);
         // Ver qué hay que lanzar
         switch (actALanzar) {
             // Si se lanzará LOGIN crear su intent
             case "LOGIN":
-                i = new Intent(instancia, LoginActivity.class);
+                Navigation.findNavController(Objects.requireNonNull(instancia.getView())).navigate(R.id.action_inicialActivity_to_login);
                 break;
             // Si no, si se lanzará TRABAJO crear su intent
             case "TRABAJO":
-                i = new Intent(instancia, GeneradorProgresionesActivity.class);
+                Navigation.findNavController(Objects.requireNonNull(instancia.getView())).navigate(R.id.action_inicialActivity_to_funcionalidadApp);
                 break;
             // Si no, se lanzará crear intent para lanzar intent de DECIDIR
             default:
-                i = new Intent(instancia, ElegirInicioActivity.class);
+                Navigation.findNavController(Objects.requireNonNull(instancia.getView())).navigate(R.id.action_inicialActivity_to_elegirInicio);
                 break;
         }
-        instancia.startActivity(i);
-        instancia.finish();
     }
 }

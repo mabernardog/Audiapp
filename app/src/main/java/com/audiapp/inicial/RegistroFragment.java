@@ -1,12 +1,13 @@
 package com.audiapp.inicial;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -16,8 +17,13 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.audiapp.Audiapp;
 import com.audiapp.R;
@@ -38,8 +44,7 @@ import retrofit2.Response;
 import static android.view.inputmethod.InputMethodManager.RESULT_UNCHANGED_SHOWN;
 
 
-public class RegistroActivity extends AppCompatActivity {
-
+public class RegistroFragment extends Fragment {
     // Obtener referencias
     //      Email
     @Nullable
@@ -70,18 +75,23 @@ public class RegistroActivity extends AppCompatActivity {
     @Nullable
     @BindView(R.id.toolbar_registro)
     Toolbar toolbar;
+    private View mView;
     // Controlar que solo se pueda clickar una vez el botón (evitar spam de registros)
     private boolean botonClickado = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro);
-        ButterKnife.bind(this);
-        setSupportActionBar(toolbar);
-
-
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        mView = inflater.inflate(R.layout.fragment_registro, container, false);
+        ButterKnife.bind(this, mView);
+        // Determinar NavController
+        NavController mNavController = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.general_host);
+        // Hacer que el mToolbar lo autogestione NavigationUI
+        AppBarConfiguration mAppBarConfiguration = new AppBarConfiguration.Builder(mNavController.getGraph()).build();
+        assert toolbar != null;
+        NavigationUI.setupWithNavController(toolbar, mNavController, mAppBarConfiguration);
         definirListeners();
+        return mView;
     }
 
     private void definirListeners() {
@@ -212,7 +222,7 @@ public class RegistroActivity extends AppCompatActivity {
         );
 
         // Listener especial para el último edit (contraseña)
-        LinearLayout grupoEdits = findViewById(R.id.linearLayout_registro);
+        LinearLayout grupoEdits = mView.findViewById(R.id.linearLayout_registro);
         final TextInputLayout ultimoHijo = (TextInputLayout) grupoEdits.getChildAt(grupoEdits.getChildCount() - 1);
         final EditText editUltimoHijo = ultimoHijo.getEditText();
         assert editUltimoHijo != null;
@@ -223,8 +233,8 @@ public class RegistroActivity extends AppCompatActivity {
                             // Quitar foco
                             editUltimoHijo.clearFocus();
                             // Obtener teclado
-                            InputMethodManager teclado = (InputMethodManager) getApplicationContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                            teclado.hideSoftInputFromWindow(Objects.requireNonNull(getCurrentFocus()).getWindowToken(), RESULT_UNCHANGED_SHOWN);
+                            InputMethodManager teclado = (InputMethodManager) Objects.requireNonNull(getContext()).getSystemService(Context.INPUT_METHOD_SERVICE);
+                            teclado.hideSoftInputFromWindow(mView.getWindowToken(), RESULT_UNCHANGED_SHOWN);
                             return true;
                         // Por defecto
                         default:
@@ -232,6 +242,78 @@ public class RegistroActivity extends AppCompatActivity {
                     }
                 }
         );
+
+        ref_button_doRegistro.setOnClickListener(v -> {
+            if (botonClickado) return;   // Si el botón ya ha sido pulsado: salir
+            botonClickado = true;
+            Toast registrandoMsg = Toast.makeText(getContext(), "Creando la cuenta...", Toast.LENGTH_SHORT);
+            registrandoMsg.show();
+            assert (ref_edit_email != null && ref_edit_nick != null && ref_edit_passw != null);
+            Usuario datosUsuario = new Usuario(ref_edit_email.getText().toString(), ref_edit_nick.getText().toString(), ref_edit_passw.getText().toString());
+            // Definir contexto para los intents
+            final RegistroFragment instancia = this;
+            // Crear runnable
+            Runnable navegar = () -> NavHostFragment.findNavController(instancia).navigate(R.id.action_registro_to_login);
+            API_SGU apiSGU = Audiapp.getInstancia().getRetroAudiappFit().getCliente().create(API_SGU.class);
+            apiSGU.hacerRegistro(datosUsuario).
+                    enqueue(new Callback<InfoDBAudiappi>() {
+                        @Override
+                        public void onResponse(@NonNull Call<InfoDBAudiappi> llamada, @NonNull Response<InfoDBAudiappi> respuesta) {
+                            // Sacar el mensaje de información de la respuesta
+                            InfoDBAudiappi mensaje = respuesta.body();
+                            // Informar al usuario
+                            assert mensaje != null;     // Siempre va a ir un InfoDBAudiappi, puesto por seguridad
+                            Toast burbuja = Toast.makeText(getContext(), mensaje.getDescripcion(), Toast.LENGTH_SHORT);
+                            burbuja.show();
+                            // Si el servidor informa de fallo
+                            if (mensaje.getTag().equals("FALLO")) {
+                                // Si el fallo es porque hay algo repetido
+                                if (mensaje.getMotivo().equals("REPETIDO")) {
+                                    // Si el usuario ya está registrado
+                                    switch (mensaje.getDescripcion()) {
+                                        case Strings.usuarioYaEnBD:
+                                            botonClickado = false;  // Desclickar botón
+
+                                            // Hacer que inicie sesión a mitad del toast
+                                            new Handler().postDelayed(navegar, 1000);
+                                            break;
+                                        // Si el email está repetido
+                                        case Strings.emailYaEnBD:
+                                            botonClickado = false;  // Desclickar botón
+                                            // Resetear edit del email
+                                            ref_edit_email.setText("");
+                                            break;
+                                        // Si el nick está repetido
+                                        case Strings.nickYaEnBD:
+                                            botonClickado = false;  // Desclickar botón
+                                            // Resetear edit del nick
+                                            ref_edit_nick.setText("");
+                                            break;
+                                    }
+                                }
+                                // Si no (motivo = ERROR_DB), no hacer nada
+                                else botonClickado = false;  // Desclickar botón
+                            }
+                            // Si el servidor informa de que se ha realizado el registro con éxito
+                            if (mensaje.getTag().equals("OK")) {
+                                botonClickado = false;  // Desclickar botón
+                                // Verificar que es el INSERT lo recibido (puede ser redundante)
+                                if (mensaje.getMotivo().equals("INSERT")) {
+                                    // Mandar a actividad de inicio de sesión a mitad del toast
+                                    new Handler().postDelayed(navegar, 1000);
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(@NonNull Call<InfoDBAudiappi> llamada, @NonNull Throwable t) {
+                            // No se ha podido contactar con el servidor: sólo informar al usuario
+                            Toast burbuja = Toast.makeText(getContext(), Strings.errorConexionServidor, Toast.LENGTH_SHORT);
+                            burbuja.show();
+                            botonClickado = false;  // Desclickar botón
+                        }
+                    });
+        });
 
     }
 
@@ -261,85 +343,5 @@ public class RegistroActivity extends AppCompatActivity {
                     && !TextUtils.isEmpty(ref_edit_passw.getText().toString());
         }
     }
-
-    public void onClickRegistro(View v) {
-        if (botonClickado) return;   // Si el botón ya ha sido pulsado: salir
-        botonClickado = true;
-        Toast registrandoMsg = Toast.makeText(getApplicationContext(), "Creando la cuenta...", Toast.LENGTH_SHORT);
-        registrandoMsg.show();
-        assert (ref_edit_email != null && ref_edit_nick != null && ref_edit_passw != null);
-        Usuario datosUsuario = new Usuario(ref_edit_email.getText().toString(), ref_edit_nick.getText().toString(), ref_edit_passw.getText().toString());
-
-        // Definir contexto para los intents
-        final RegistroActivity instancia = this;
-        API_SGU apiSGU = Audiapp.getInstancia().getRetroAudiappFit().getCliente().create(API_SGU.class);
-        apiSGU.hacerRegistro(datosUsuario).
-                enqueue(new Callback<InfoDBAudiappi>() {
-                    @Override
-                    public void onResponse(@NonNull Call<InfoDBAudiappi> llamada, @NonNull Response<InfoDBAudiappi> respuesta) {
-                        // Sacar el mensaje de información de la respuesta
-                        InfoDBAudiappi mensaje = respuesta.body();
-                        // Informar al usuario
-                        assert mensaje != null;     // Siempre va a ir un InfoDBAudiappi, puesto por seguridad
-                        Toast burbuja = Toast.makeText(getApplicationContext(), mensaje.getDescripcion(), Toast.LENGTH_SHORT);
-                        burbuja.show();
-                        // Si el servidor informa de fallo
-                        if (mensaje.getTag().equals("FALLO")) {
-                            // Si el fallo es porque hay algo repetido
-                            if (mensaje.getMotivo().equals("REPETIDO")) {
-                                // Si el usuario ya está registrado
-                                switch (mensaje.getDescripcion()) {
-                                    case Strings.usuarioYaEnBD:
-                                        botonClickado = false;  // Desclickar botón
-
-                                        // Hacer que inicie sesión a mitad del toast
-                                        new Handler().postDelayed(() -> {
-                                            Intent i = new Intent(instancia, LoginActivity.class);
-                                            startActivity(i);
-                                            finish();
-                                        }, 1000);
-                                        break;
-                                    // Si el email está repetido
-                                    case Strings.emailYaEnBD:
-                                        botonClickado = false;  // Desclickar botón
-                                        // Resetear edit del email
-                                        ref_edit_email.setText("");
-                                        break;
-                                    // Si el nick está repetido
-                                    case Strings.nickYaEnBD:
-                                        botonClickado = false;  // Desclickar botón
-                                        // Resetear edit del nick
-                                        ref_edit_nick.setText("");
-                                        break;
-                                }
-                            }
-                            // Si no (motivo = ERROR_DB), no hacer nada
-                            else botonClickado = false;  // Desclickar botón
-                        }
-                        // Si el servidor informa de que se ha realizado el registro con éxito
-                        if (mensaje.getTag().equals("OK")) {
-                            botonClickado = false;  // Desclickar botón
-                            // Verificar que es el INSERT lo recibido (puede ser redundante)
-                            if (mensaje.getMotivo().equals("INSERT")) {
-                                // Mandar a actividad de inicio de sesión a mitad del toast
-                                new Handler().postDelayed(() -> {
-                                    Intent i = new Intent(instancia, LoginActivity.class);
-                                    startActivity(i);
-                                    finish();
-                                }, 1000);
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull Call<InfoDBAudiappi> llamada, @NonNull Throwable t) {
-                        // No se ha podido contactar con el servidor: sólo informar al usuario
-                        Toast burbuja = Toast.makeText(getApplicationContext(), Strings.errorConexionServidor, Toast.LENGTH_SHORT);
-                        burbuja.show();
-                        botonClickado = false;  // Desclickar botón
-                    }
-                });
-    }
-
 }
 

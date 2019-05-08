@@ -27,7 +27,7 @@ public class Strings {
 // Privados
     private final static String ipDebug = "192.168.1.39";
     private final static String ipLocal = "192.168.1.40";
-    private final static String ipExt = "83.40.219.84";
+    private final static String ipExt = "88.3.223.94";
 
     public static String UrlBase(String localizacion) {
         int puertoDebug = 8080;
