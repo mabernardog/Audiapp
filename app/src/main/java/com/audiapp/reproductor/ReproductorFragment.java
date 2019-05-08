@@ -1,111 +1,106 @@
 package com.audiapp.reproductor;
 
+import android.content.ComponentName;
 import android.content.Context;
-import android.net.Uri;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
 import com.audiapp.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ReproductorFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ReproductorFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.io.File;
+import java.util.Objects;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ReproductorFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
+    @Nullable
+    @BindView(R.id.toolbar_reproductor)
+    Toolbar toolbar;
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
-    public ReproductorFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ReproductorFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ReproductorFragment newInstance(String param1, String param2) {
-        ReproductorFragment fragment = new ReproductorFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private WidgetReproductor mWidgetReproductor;
+    private ServiceConnection mServiceConnection;
+    private Intent intentServicio;
+    private ServicioReproductor mServicioReproductor;
+    private boolean servicioActivo;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reproductor, container, false);
-    }
+        View vistaFragmento = inflater.inflate(R.layout.fragment_reproductor, container, false);
+        ButterKnife.bind(this, vistaFragmento);
+        // Determinar NavController
+        NavController mNavController = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.general_host);
+        // Hacer que el mToolbar lo autogestione NavigationUI
+        AppBarConfiguration mAppBarConfiguration = new AppBarConfiguration.Builder(mNavController.getGraph()).build();
+        assert toolbar != null;
+        NavigationUI.setupWithNavController(toolbar, mNavController, mAppBarConfiguration);
+        // Asociar fragment al servicio
+        mServiceConnection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                ServicioReproductor.ServicioReproductorBinder binder = (ServicioReproductor.ServicioReproductorBinder) service;
+                mServicioReproductor = binder.getService();
+                mServicioReproductor.setContext(getContext());
+                // Todo: usar los midis generados por el fragment previo
+                mServicioReproductor.setUris((new File(getContext().getFilesDir(), "teste.mid").getPath()));
+                mWidgetReproductor.setMediaPlayer(new ControladorReproductor(mServicioReproductor));
+                mWidgetReproductor.show();
+                mServicioReproductor.play();
+                servicioActivo = true;
+            }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+            @Override
+            public void onServiceDisconnected(ComponentName name) {
+                servicioActivo = false;
+            }
+        };
+        // Inicializar el widget
+        mWidgetReproductor = new WidgetReproductor(getContext());
+        mWidgetReproductor.setAnchorView(vistaFragmento);
+        mWidgetReproductor.setPrevNextListeners(v -> {
+            mServicioReproductor.siguiente();
+        }, v -> {
+            mServicioReproductor.anterior();
+        });
+        return vistaFragmento;
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+    public void onStart() {
+        super.onStart();
+        if (intentServicio == null) {
+            intentServicio = new Intent(getContext(), ServicioReproductor.class);
+            Objects.requireNonNull(getActivity()).bindService(intentServicio, mServiceConnection, Context.BIND_AUTO_CREATE);
+            getActivity().startService(intentServicio);
         }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 }
