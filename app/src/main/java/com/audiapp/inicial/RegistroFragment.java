@@ -243,6 +243,7 @@ public class RegistroFragment extends Fragment {
                 }
         );
 
+        assert ref_button_doRegistro != null;
         ref_button_doRegistro.setOnClickListener(v -> {
             if (botonClickado) return;   // Si el botón ya ha sido pulsado: salir
             botonClickado = true;

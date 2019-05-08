@@ -77,7 +77,8 @@
                 app:destination="@id/ejercicioPorOpcionesFragment" />
             <argument
                 android:name="tipoUsuario"
-                app:argType="com.audiapp.modelo.TipoUsuario" />
+                app:argType="com.audiapp.modelo.TipoUsuario"
+                android:defaultValue="NORMAL"/>
         </fragment>
         <fragment
             android:id="@+id/crearLibreFragment"

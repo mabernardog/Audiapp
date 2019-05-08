@@ -39,6 +39,7 @@ class ElegirModuloFragment extends Fragment {
         View vistaFragmento = inflater.inflate(R.layout.fragment_elegir_modulo, container, false);
         // Bindear Butterknife
         ButterKnife.bind(this, vistaFragmento);
+        // Obtener argumentos pasados
         TipoUsuario tipoUsuario = ElegirModuloFragmentArgs.fromBundle(Objects.requireNonNull(getArguments())).getTipoUsuario();
         // Añadir navegación
         assert botonCrear != null;
