@@ -19,18 +19,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-class TonalidadProgresionTonalFragment extends Fragment {
+class OpcionTonalidadEjercicioFragment extends Fragment {
     @Nullable
     @BindView(R.id.tablaTonalidadesProgresionLineal)
     TableLayout mTableLayout;
-    private ProgresionTonalViewModel mViewModel;
+    private OpcionesEjercicioViewModel mViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         assert getParentFragment() != null;
         assert getParentFragment().getParentFragment() != null;
-        mViewModel = ViewModelProviders.of(getParentFragment().getParentFragment()).get(ProgresionTonalViewModel.class);
+        mViewModel = ViewModelProviders.of(getParentFragment().getParentFragment()).get(OpcionesEjercicioViewModel.class);
     }
 
     @Override
@@ -42,7 +42,7 @@ class TonalidadProgresionTonalFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         // Inflar la vista
-        View vistaFragmento = inflater.inflate(R.layout.fragment_tonalidad_progresion_tonal, container, false);
+        View vistaFragmento = inflater.inflate(R.layout.fragment_opcion_tonalidad_ejercicio, container, false);
         ButterKnife.bind(this, vistaFragmento);
         // Crear los listeners para los botones
         assert mTableLayout != null;

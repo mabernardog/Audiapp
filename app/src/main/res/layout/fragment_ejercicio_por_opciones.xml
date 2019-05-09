@@ -40,7 +40,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu_progresion_tonal" />
+        app:menu="@menu/menu_ejercicio_por_opciones" />
 
     <fragment
         android:id="@+id/progresion_tonal_host"

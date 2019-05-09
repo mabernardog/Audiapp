@@ -6,9 +6,9 @@ import com.audiapp.modelo.Tempo;
 
 import java.util.ArrayList;
 
-class ProgresionTonalViewModel extends ViewModel {
+class OpcionesEjercicioViewModel extends ViewModel {
     private ArrayList<String> tiposProgresion;
-    private ArrayList<String> inversionesProgresion;
+    private Boolean hayInversiones;
     private ArrayList<ArrayList<String>> tonalidadesProgresion; // El 1er elemento representa a las mayores, el 2º a las menores
     private Tempo tempo;
 
@@ -19,11 +19,20 @@ class ProgresionTonalViewModel extends ViewModel {
         return tiposProgresion;
     }
 
-    public ArrayList<String> getInversionesProgresion() {
-        if (inversionesProgresion == null) {
-            inversionesProgresion = new ArrayList<>();
+    public Boolean getHayInversiones() {
+        return hayInversiones;
+    }
+
+    public void setHayInversiones(boolean hayInversiones) {
+        if(this.hayInversiones == null) {
+            this.hayInversiones = hayInversiones;
+            return;
         }
-        return inversionesProgresion;
+        this.hayInversiones = hayInversiones;
+    }
+
+    public void nulificarHayInversiones() {
+        hayInversiones = null;
     }
 
     public ArrayList<String> getTonalidadesMayoresProgresion() {
@@ -54,11 +63,11 @@ class ProgresionTonalViewModel extends ViewModel {
 
     public boolean esValido() {
         // Validar el uso de cada uno una vez
-        if (tiposProgresion == null || inversionesProgresion == null || tonalidadesProgresion == null || tempo == null) {
+        if (tiposProgresion == null || hayInversiones == null || tonalidadesProgresion == null || tempo == null) {
             return false;
         }
         // Validar que haya algo en los tipos e inversiones de la progresión
-        if (tiposProgresion.isEmpty() && inversionesProgresion.isEmpty()) {
+        if (tiposProgresion.isEmpty()) {
             return false;
         }
         // Validar que haya alguna tonalidad mayor o menor en la lista

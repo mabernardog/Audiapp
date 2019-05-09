@@ -61,11 +61,11 @@
     </fragment>
 
     <navigation android:id="@+id/funcionalidad_app_grafo"
-        app:startDestination="@id/elegirProgresionFragment">
+        app:startDestination="@id/elegirModuloFragment">
         <fragment
-            android:id="@+id/elegirProgresionFragment"
+            android:id="@+id/elegirModuloFragment"
             android:name="com.audiapp.inicial.ElegirModuloFragment"
-            android:label="@string/title_generar_progresion"
+            android:label="@string/title_elegir_modulo"
             tools:layout="@layout/fragment_elegir_modulo">
             <action
                 android:id="@+id/action_elegirProgresion_to_crearLibre"
@@ -92,7 +92,7 @@
         <fragment
             android:id="@+id/ejercicioPorOpcionesFragment"
             android:name="com.audiapp.progresiones.EjercicioPorOpcionesFragment"
-            android:label="@string/title_crear_progresionTonal"
+            android:label="@string/title_ejercicio_opciones"
             tools:layout="@layout/fragment_ejercicio_por_opciones">
             <action
                 android:id="@+id/action_crearProgresionTonal_to_reproductor"

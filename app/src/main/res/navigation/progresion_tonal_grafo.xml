@@ -6,18 +6,14 @@
     app:startDestination="@id/tipoProgresionTonalFragment">
     <fragment
         android:id="@+id/tipoProgresionTonalFragment"
-        android:name="com.audiapp.progresiones.TipoProgresionTonalFragment"
-        tools:layout="@layout/fragment_tipo_progresion_tonal"/>
-    <fragment
-        android:id="@+id/inversionProgresionTonalFragment"
-        android:name="com.audiapp.progresiones.InversionProgresionTonalFragment"
-        tools:layout="@layout/fragment_inversion_progresion_tonal"/>
+        android:name="com.audiapp.progresiones.OpcionTipoEjercicioFragment"
+        tools:layout="@layout/fragment_opcion_tipo_ejercicio"/>
     <fragment
         android:id="@+id/tonalidadProgresionTonalFragment"
-        android:name="com.audiapp.progresiones.TonalidadProgresionTonalFragment"
-        tools:layout="@layout/fragment_tonalidad_progresion_tonal"/>
+        android:name="com.audiapp.progresiones.OpcionTonalidadEjercicioFragment"
+        tools:layout="@layout/fragment_opcion_tonalidad_ejercicio"/>
     <fragment
         android:id="@+id/tempoProgresionTonalFragment"
-        android:name="com.audiapp.progresiones.TempoProgresionTonalFragment"
-        tools:layout="@layout/fragment_tempo_progresion_tonal" />
+        android:name="com.audiapp.progresiones.OpcionTempoEjercicioFragment"
+        tools:layout="@layout/fragment_opcion_tempo_ejercicio" />
 </navigation>

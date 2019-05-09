@@ -38,13 +38,13 @@ class EjercicioPorOpcionesFragment extends Fragment {
     @BindView(R.id.toolbar_tonal)
     Toolbar toolbar;
 
-    private ProgresionTonalViewModel mViewModel;
+    private OpcionesEjercicioViewModel mViewModel;
 
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(ProgresionTonalViewModel.class);
+        mViewModel = ViewModelProviders.of(this).get(OpcionesEjercicioViewModel.class);
     }
 
     @Override

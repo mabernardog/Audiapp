@@ -24,7 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-class TempoProgresionTonalFragment extends Fragment {
+class OpcionTempoEjercicioFragment extends Fragment {
     @Nullable
     @BindView(R.id.rbtnG_tempo)
     RadioGroup mRadioGroup;
@@ -34,14 +34,14 @@ class TempoProgresionTonalFragment extends Fragment {
     @Nullable
     @BindView(R.id.edit_tempo)
     EditText mEditText;
-    private ProgresionTonalViewModel mViewModel;
+    private OpcionesEjercicioViewModel mViewModel;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         assert getParentFragment() != null;
         assert getParentFragment().getParentFragment() != null;
-        mViewModel = ViewModelProviders.of(getParentFragment().getParentFragment()).get(ProgresionTonalViewModel.class);
+        mViewModel = ViewModelProviders.of(getParentFragment().getParentFragment()).get(OpcionesEjercicioViewModel.class);
     }
 
     @Override
@@ -54,7 +54,7 @@ class TempoProgresionTonalFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         // Inflar la vista
-        View vistaFragmento = inflater.inflate(R.layout.fragment_tempo_progresion_tonal, container, false);
+        View vistaFragmento = inflater.inflate(R.layout.fragment_opcion_tempo_ejercicio, container, false);
         ButterKnife.bind(this, vistaFragmento);
         assert mRadioGroup != null;
         for (int i = 0; i < mRadioGroup.getChildCount(); i++) {

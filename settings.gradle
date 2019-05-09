@@ -1,1 +1,1 @@
-include ':app', ':globales', ':modelo', ':lib'
+include ':app', ':globales', ':modelo', ':lib', ':jfugue-5.0.9'
