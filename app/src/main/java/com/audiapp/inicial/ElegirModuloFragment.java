@@ -10,13 +10,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.audiapp.R;
 import com.audiapp.modelo.TipoUsuario;
+import com.audiapp.viewmodels.AppViewModel;
 
 import java.util.Objects;
 
@@ -33,6 +34,15 @@ class ElegirModuloFragment extends Fragment {
     @Nullable
     @BindView(R.id.toolbar_elegirModulo)
     Toolbar toolbar;
+    private AppViewModel mAppViewModel;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        assert getParentFragment() != null;
+        assert getParentFragment().getParentFragment() != null;
+        mAppViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(AppViewModel.class);
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -49,16 +59,16 @@ class ElegirModuloFragment extends Fragment {
         // Determinar NavController
         NavController mNavController = Navigation.findNavController(Objects.requireNonNull(getActivity()), R.id.general_host);
         // Hacer que el mToolbar lo autogestione NavigationUI
-        AppBarConfiguration mAppBarConfiguration = new AppBarConfiguration.Builder(mNavController.getGraph()).build();
+        mAppViewModel.setAppBarConfiguration();
         assert toolbar != null;
-        NavigationUI.setupWithNavController(toolbar, mNavController, mAppBarConfiguration);
-        // Obtener argumentos pasados
-        TipoUsuario tipoUsuario = ElegirModuloFragmentArgs.fromBundle(Objects.requireNonNull(getArguments())).getTipoUsuario();
+        NavigationUI.setupWithNavController(toolbar, mNavController, mAppViewModel.getAppBarConfiguration());
+        // Determinar el tipo de usuario
+        TipoUsuario tipoUsuario = mAppViewModel.getTipoAcceso();
         // Añadir navegación
         assert botonCrear != null;
-        botonCrear.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.ejercicioPorOpcionesFragment));
+        botonCrear.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_elegirModulo_to_crearProgresion));
         assert botonAdivinar != null;
-        botonAdivinar.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.crearLibreFragment));
+        botonAdivinar.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_elegirModulo_to_modoEleccionEjercicio));
         if (tipoUsuario == TipoUsuario.ANONIMO) {
             botonAdivinar.setEnabled(false);
         }

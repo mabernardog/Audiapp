@@ -1,4 +1,4 @@
-package com.audiapp.progresiones;
+package com.audiapp.viewmodels;
 
 import androidx.lifecycle.ViewModel;
 
@@ -6,7 +6,7 @@ import com.audiapp.modelo.Tempo;
 
 import java.util.ArrayList;
 
-class OpcionesEjercicioViewModel extends ViewModel {
+public class OpcionesEjercicioViewModel extends ViewModel {
     private ArrayList<String> tiposProgresion;
     private Boolean hayInversiones;
     private ArrayList<ArrayList<String>> tonalidadesProgresion; // El 1er elemento representa a las mayores, el 2º a las menores

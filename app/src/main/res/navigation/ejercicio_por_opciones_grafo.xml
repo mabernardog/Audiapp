@@ -6,14 +6,14 @@
     app:startDestination="@id/tipoProgresionTonalFragment">
     <fragment
         android:id="@+id/tipoProgresionTonalFragment"
-        android:name="com.audiapp.progresiones.OpcionTipoEjercicioFragment"
+        android:name="com.audiapp.adivinar.OpcionTipoEjercicioFragment"
         tools:layout="@layout/fragment_opcion_tipo_ejercicio"/>
     <fragment
         android:id="@+id/tonalidadProgresionTonalFragment"
-        android:name="com.audiapp.progresiones.OpcionTonalidadEjercicioFragment"
+        android:name="com.audiapp.adivinar.OpcionTonalidadEjercicioFragment"
         tools:layout="@layout/fragment_opcion_tonalidad_ejercicio"/>
     <fragment
         android:id="@+id/tempoProgresionTonalFragment"
-        android:name="com.audiapp.progresiones.OpcionTempoEjercicioFragment"
+        android:name="com.audiapp.adivinar.OpcionTempoEjercicioFragment"
         tools:layout="@layout/fragment_opcion_tempo_ejercicio" />
 </navigation>

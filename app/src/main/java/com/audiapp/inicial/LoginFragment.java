@@ -17,6 +17,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -29,7 +30,9 @@ import com.audiapp.db.GestorDB;
 import com.audiapp.db.GestorUsuarioDB;
 import com.audiapp.globales.Strings;
 import com.audiapp.modelo.InfoDBAudiappi;
+import com.audiapp.modelo.TipoUsuario;
 import com.audiapp.modelo.Usuario;
+import com.audiapp.viewmodels.AppViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
@@ -251,7 +254,8 @@ public class LoginFragment extends Fragment {
                                     // Guardarlo en DB
                                     ((GestorUsuarioDB) Objects.requireNonNull(new GestorDB().acceder("Usuario"))).crear(datosUsuario);
                                 }
-                                // Una vez se actualiza la DB, pasar a actividad de trabajo
+                                // Una vez se actualiza la DB, pasar a actividad de trabajo tras actualizar el AppViewModel
+                                ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(AppViewModel.class).setTipoAcceso(TipoUsuario.NORMAL);
                                 Navigation.findNavController(mView).navigate(R.id.action_login_to_funcionalidadApp);
                             }
                         }

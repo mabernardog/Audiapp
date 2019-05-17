@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.audiapp.R;
 import com.audiapp.modelo.TipoUsuario;
+import com.audiapp.viewmodels.AppViewModel;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.Objects;
@@ -42,9 +44,9 @@ public class ElegirInicioFragment extends Fragment {
         botonRegistro.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_elegirInicio_to_registro));
         assert botonAnonimo != null;
         botonAnonimo.setOnClickListener(v -> {
-            Bundle args = new Bundle();
-            args.putSerializable("tipoUsuario", TipoUsuario.ANONIMO);
-            Navigation.findNavController(Objects.requireNonNull(this.getView())).navigate(R.id.action_elegirInicio_to_funcionalidadApp, args);
+            // Actualizar el AppViewModel y navegar
+            ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(AppViewModel.class).setTipoAcceso(TipoUsuario.ANONIMO);
+            Navigation.findNavController(Objects.requireNonNull(this.getView())).navigate(R.id.action_elegirInicio_to_funcionalidadApp);
         });
         return vistaFragmento;
     }

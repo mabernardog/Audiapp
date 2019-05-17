@@ -12,6 +12,7 @@ import android.view.WindowManager;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.audiapp.Audiapp;
@@ -20,7 +21,9 @@ import com.audiapp.apisgu.API_SGU;
 import com.audiapp.db.GestorDB;
 import com.audiapp.db.GestorUsuarioDB;
 import com.audiapp.modelo.InfoDBAudiappi;
+import com.audiapp.modelo.TipoUsuario;
 import com.audiapp.modelo.Usuario;
+import com.audiapp.viewmodels.AppViewModel;
 
 import java.util.List;
 import java.util.Objects;
@@ -126,15 +129,22 @@ class SiguienteActivity implements Runnable {
         switch (actALanzar) {
             // Si se lanzará LOGIN crear su intent
             case "LOGIN":
-                Navigation.findNavController(Objects.requireNonNull(instancia.getView())).navigate(R.id.action_inicialActivity_to_login);
+                Navigation.findNavController(Objects.requireNonNull(instancia.getView())).navigate(R.id.action_inicial_to_login);
                 break;
             // Si no, si se lanzará TRABAJO crear su intent
             case "TRABAJO":
-                Navigation.findNavController(Objects.requireNonNull(instancia.getView())).navigate(R.id.action_inicialActivity_to_funcionalidadApp);
+                try {
+                    //Navigation.findNavController(Objects.requireNonNull(instancia.getView())).popBackStack(R.id.inicialActivity, true);
+                    // Actualizar el AppViewModel y navegar
+                    ViewModelProviders.of(instancia.getActivity()).get(AppViewModel.class).setTipoAcceso(TipoUsuario.NORMAL);
+                    Navigation.findNavController(Objects.requireNonNull(instancia.getView())).navigate(R.id.action_inicial_to_funcionalidadApp);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 break;
             // Si no, se lanzará crear intent para lanzar intent de DECIDIR
             default:
-                Navigation.findNavController(Objects.requireNonNull(instancia.getView())).navigate(R.id.action_inicialActivity_to_elegirInicio);
+                Navigation.findNavController(Objects.requireNonNull(instancia.getView())).navigate(R.id.action_inicial_to_elegirInicio);
                 break;
         }
     }
