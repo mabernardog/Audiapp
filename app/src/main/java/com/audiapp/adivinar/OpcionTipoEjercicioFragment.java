@@ -1,4 +1,4 @@
-package com.audiapp.progresiones;
+package com.audiapp.adivinar;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.audiapp.R;
+import com.audiapp.viewmodels.OpcionesEjercicioViewModel;
 
 import java.util.ArrayList;
 

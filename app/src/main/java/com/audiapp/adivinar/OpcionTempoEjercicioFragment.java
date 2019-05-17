@@ -1,4 +1,4 @@
-package com.audiapp.progresiones;
+package com.audiapp.adivinar;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.audiapp.R;
 import com.audiapp.modelo.Tempo;
+import com.audiapp.viewmodels.OpcionesEjercicioViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

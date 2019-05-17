@@ -1,4 +1,4 @@
-package com.audiapp.progresiones;
+package com.audiapp.adivinar;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.audiapp.R;
 import com.audiapp.midigen.MidiGen;
+import com.audiapp.viewmodels.OpcionesEjercicioViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -35,7 +36,7 @@ class EjercicioPorOpcionesFragment extends Fragment {
     @BindView(R.id.floatingActionButton)
     FloatingActionButton mFloatingActionButton;
     @Nullable
-    @BindView(R.id.toolbar_tonal)
+    @BindView(R.id.toolbar_ejPorOpciones)
     Toolbar toolbar;
 
     private OpcionesEjercicioViewModel mViewModel;
@@ -67,15 +68,16 @@ class EjercicioPorOpcionesFragment extends Fragment {
         NavigationUI.setupWithNavController(toolbar, mNavControllerToolbar, mAppBarConfiguration);
         // Hacer que el BottomNavigation lo autogestione NavigationUI
         assert mBottomNavigationView != null;
-        NavController mNavControllerBotNav = Navigation.findNavController(vistaFragmento.findViewById(R.id.progresion_tonal_host));
+        NavController mNavControllerBotNav = Navigation.findNavController(vistaFragmento.findViewById(R.id.ejercicioPorOpcioneshost));
         NavigationUI.setupWithNavController(mBottomNavigationView, mNavControllerBotNav);
         // Añadir onClick al botón flotante
         assert mFloatingActionButton != null;
         mFloatingActionButton.setOnClickListener(v -> {
-            // Todo: generar MIDI
-            // Todo: navegar solo si se genera el MIDI
+            // Todo: contactar con el servidor para pedir ejercicio
+            // Todo: generar el MIDI del ejercicio
             MidiGen.generarTestEn((new File(Objects.requireNonNull(getContext()).getFilesDir(), "teste.mid").getPath()));
-            Navigation.findNavController(vistaFragmento).navigate(R.id.action_crearProgresionTonal_to_reproductor);
+            // Todo: navegar al destino
+            Navigation.findNavController(vistaFragmento).navigate(0);
         });
         return vistaFragmento;
     }

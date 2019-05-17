@@ -15,8 +15,13 @@
     <string name="title_elegir_modulo">Selección de módulo</string>
     <string name="button_modulo_crearProgresion">Crear progresión</string>
     <string name="button_modulo_adivinar">Adivinar</string>
+    <string name="title_elegir_modo_creacion_ejercicio">Creación del ejercicio</string>
+    <string name="button_goEjercicioPorNivel">Según nivel</string>
+    <string name="button_goEjercicioPorOpciones">Por opciones</string>
     <string name="title_ejercicio_opciones">Opciones del ejercicio</string>
-    <string name="title_crear_progresionLibre">Crear progresión libre</string>
+    <string name="title_crear_progresion">Crear progresión</string>
+    <string name="info_crear_progresion">Escribe (con cifrado americano) los acordes de la progresión</string>
+    <string name="info_add">Añadir</string>
     <string name="title_reproductor">Reproductor</string>
     <string name="title_tonalidad">Tonalidad</string>
     <string name="info_tonalidad_ejercPorOpciones">Elige las tonalidades</string>
@@ -56,5 +61,7 @@
     <string name="type_presto_tempo">Presto</string>
     <string name="type_prestissimo_tempo">Prestissimo</string>
     <string name="info_progresionTonalViewModel_invalido">Completa la configuración de la progresión cumplimentando todos los campos de las pestañas</string>
+    <string name="info_modoEleccionEjercicio">¿Cómo quieres crear el ejercicio?</string>
+    <string name="text_borrar">Borrar</string>
 
 </resources>

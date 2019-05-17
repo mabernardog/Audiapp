@@ -5,10 +5,10 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".progresiones.EjercicioPorOpcionesFragment">
+    tools:context=".adivinar.EjercicioPorOpcionesFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_tonal"
+        android:id="@+id/toolbar_ejPorOpciones"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
@@ -23,10 +23,10 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:clickable="true"
-        android:elevation="8dp"
+        android:elevation="6dp"
         android:focusable="true"
         android:src="@drawable/ic_aceptar_progresion_tonal"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav_progresionTonal"
@@ -36,6 +36,7 @@
         android:id="@+id/bottom_nav_progresionTonal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="8dp"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +44,7 @@
         app:menu="@menu/menu_ejercicio_por_opciones" />
 
     <fragment
-        android:id="@+id/progresion_tonal_host"
+        android:id="@+id/ejercicioPorOpcioneshost"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -51,6 +52,6 @@
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav_progresionTonal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_tonal"
-        app:navGraph="@navigation/progresion_tonal_grafo" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_ejPorOpciones"
+        app:navGraph="@navigation/ejercicio_por_opciones_grafo" />
 </androidx.constraintlayout.widget.ConstraintLayout>
