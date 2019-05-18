@@ -92,7 +92,7 @@ public class MyMusicService extends MediaBrowserServiceCompat {
     @Override
     public void onLoadChildren(@NonNull final String parentMediaId,
                                @NonNull final Result<List<MediaItem>> result) {
-        result.sendResult(new ArrayList<MediaItem>());
+        result.sendResult(new ArrayList<>());
     }
 
     private final class MediaSessionCallback extends MediaSessionCompat.Callback {

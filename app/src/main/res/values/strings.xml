@@ -15,6 +15,11 @@
     <string name="title_elegir_modulo">Selección de módulo</string>
     <string name="button_modulo_crearProgresion">Crear progresión</string>
     <string name="button_modulo_adivinar">Adivinar</string>
+    <string name="drawer_cerrar_sesion">Cerrar sesión</string>
+    <string name="drawer_ver_perfil">Mi perfil</string>
+    <string name="drawer_ver_progresiones">Mis progresiones</string>
+    <string name="drawer_ver_mis_estadisticas">Mis estadísticas</string>
+    <string name="usuario_anonimo">Anónimo</string>
     <string name="title_elegir_modo_creacion_ejercicio">Creación del ejercicio</string>
     <string name="button_goEjercicioPorNivel">Según nivel</string>
     <string name="button_goEjercicioPorOpciones">Por opciones</string>
@@ -22,6 +27,7 @@
     <string name="title_crear_progresion">Crear progresión</string>
     <string name="info_crear_progresion">Escribe (con cifrado americano) los acordes de la progresión</string>
     <string name="info_add">Añadir</string>
+    <string name="item_referencia_acorde">Mostrar hoja de referencia</string>
     <string name="title_reproductor">Reproductor</string>
     <string name="title_tonalidad">Tonalidad</string>
     <string name="info_tonalidad_ejercPorOpciones">Elige las tonalidades</string>

@@ -108,9 +108,9 @@ class OpcionTipoEjercicioFragment extends Fragment {
         });
         // Activar lo que toque
         Boolean hayInversionesVM = mViewModel.getHayInversiones();
-        if(hayInversionesVM != null && hayInversionesVM) {
+        if (hayInversionesVM != null && hayInversionesVM) {
             mRadioGroup.check(R.id.radioButton_siInversiones);
-        } else if(hayInversionesVM != null) {
+        } else if (hayInversionesVM != null) {
             mRadioGroup.check(R.id.radioButton_noInversiones);
         }
 

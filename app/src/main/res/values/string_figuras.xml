@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="string_figuras">
-        <item>Semicorchea</item>
+        <item>Semicor.</item>
         <item>Corchea</item>
         <item>Negra</item>
         <item>Blanca</item>

@@ -7,11 +7,11 @@
     <fragment
         android:id="@+id/tipoProgresionTonalFragment"
         android:name="com.audiapp.adivinar.OpcionTipoEjercicioFragment"
-        tools:layout="@layout/fragment_opcion_tipo_ejercicio"/>
+        tools:layout="@layout/fragment_opcion_tipo_ejercicio" />
     <fragment
         android:id="@+id/tonalidadProgresionTonalFragment"
         android:name="com.audiapp.adivinar.OpcionTonalidadEjercicioFragment"
-        tools:layout="@layout/fragment_opcion_tonalidad_ejercicio"/>
+        tools:layout="@layout/fragment_opcion_tonalidad_ejercicio" />
     <fragment
         android:id="@+id/tempoProgresionTonalFragment"
         android:name="com.audiapp.adivinar.OpcionTempoEjercicioFragment"

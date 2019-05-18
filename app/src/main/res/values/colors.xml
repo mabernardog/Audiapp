@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorBackgroundInicial">#212121</color>
-    <color name="colorPrimary">#6A1B9A</color>
+    <color name="colorPrimary">#6a1B9a</color>
     <color name="colorPrimaryLight">#9c4dcc</color>
     <color name="colorPrimaryDark">#38006b</color>
-    <color name="colorSecondary">#00897B</color>
+    <color name="colorSecondary">#00897b</color>
     <color name="colorSecondaryLight">#4ebaaa</color>
     <color name="colorSecondaryDark">#005b4f</color>
-    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorBackground">#ffffff</color>
     <color name="colorError">#990000</color>
     <color name="colorOnError">#b74c4c</color>
-    <color name="colorSurface">#DCDCDC</color>
+    <color name="colorSurface">#dcdcdc</color>
 </resources>

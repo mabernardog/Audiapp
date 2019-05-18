@@ -24,7 +24,7 @@ public class OpcionesEjercicioViewModel extends ViewModel {
     }
 
     public void setHayInversiones(boolean hayInversiones) {
-        if(this.hayInversiones == null) {
+        if (this.hayInversiones == null) {
             this.hayInversiones = hayInversiones;
             return;
         }

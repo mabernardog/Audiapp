@@ -1,6 +1,5 @@
 package com.audiapp.crearprogresion;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -77,7 +76,7 @@ class CrearProgresionFragment extends Fragment {
         // Añadir un acorde al inicio por defecto
         TableRow rowInicial = new TableRow(getContext());
         rowInicial.addView(new AcordeView(getContext(), null));
-        Button boton0 = (Button) getLayoutInflater().inflate(R.layout.plantilla_boton, null);
+        Button boton0 = (Button) View.inflate(getContext(), R.layout.plantilla_boton, null);
         boton0.setOnClickListener(eliminarAcorde);
         boton0.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
         boton0.setText(R.string.text_borrar);
@@ -90,7 +89,7 @@ class CrearProgresionFragment extends Fragment {
             //Acorde cho =  ((AcordeView) ((TableRow) mTableLayout.getChildAt(mTableLayout.getChildCount()-1)).getChildAt(0)).getAcorde();
             TableRow tableRow = new TableRow(getContext());
             tableRow.addView(new AcordeView(getContext(), null));
-            @SuppressLint("InflateParams") Button botonNuevo = (Button) getLayoutInflater().inflate(R.layout.plantilla_boton, null);
+            Button botonNuevo = (Button) View.inflate(getContext(), R.layout.plantilla_boton, null);
             botonNuevo.setOnClickListener(eliminarAcorde);
             botonNuevo.setCompoundDrawablesWithIntrinsicBounds(android.R.drawable.ic_menu_delete, 0, 0, 0);
             botonNuevo.setText(R.string.text_borrar);

@@ -27,5 +27,9 @@ public class Audiapp extends Application {
     public RetroAudiappFit getRetroAudiappFit() {
         return retrofit;
     }
+
+    public void resetRetroAudiappFit() {
+        retrofit = new RetroAudiappFit(getApplicationContext().getResources().openRawResource(R.raw.audiapp));
+    }
 }
 

@@ -9,7 +9,7 @@
         android:id="@+id/inicialActivity"
         android:name="com.audiapp.inicial.InicialFragment"
         android:label="activity_inicial"
-        tools:layout="@layout/fragment_inicial" >
+        tools:layout="@layout/fragment_inicial">
         <action
             android:id="@+id/action_inicial_to_elegirInicio"
             app:destination="@id/elegirInicioFragment"
@@ -30,7 +30,7 @@
         android:id="@+id/elegirInicioFragment"
         android:name="com.audiapp.inicial.ElegirInicioFragment"
         android:label="activity_elegir_inicio"
-        tools:layout="@layout/fragment_elegir_inicio" >
+        tools:layout="@layout/fragment_elegir_inicio">
         <action
             android:id="@+id/action_elegirInicio_to_login"
             app:destination="@id/loginFragment" />
@@ -45,7 +45,7 @@
         android:id="@+id/registroFragment"
         android:name="com.audiapp.inicial.RegistroFragment"
         android:label="@string/title_registro"
-        tools:layout="@layout/fragment_registro" >
+        tools:layout="@layout/fragment_registro">
         <action
             android:id="@+id/action_registro_to_login"
             app:destination="@id/loginFragment" />
@@ -54,7 +54,7 @@
         android:id="@+id/loginFragment"
         android:name="com.audiapp.inicial.LoginFragment"
         android:label="@string/title_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_login_to_funcionalidadApp"
             app:destination="@id/funcionalidad_app_grafo"
@@ -62,7 +62,8 @@
             app:popUpToInclusive="true" />
     </fragment>
 
-    <navigation android:id="@+id/funcionalidad_app_grafo"
+    <navigation
+        android:id="@+id/funcionalidad_app_grafo"
         app:startDestination="@id/elegirModuloFragment">
         <fragment
             android:id="@+id/elegirModuloFragment"
@@ -76,8 +77,8 @@
                 app:exitAnim="@anim/nav_default_exit_anim" />
             <argument
                 android:name="tipoUsuario"
-                app:argType="com.audiapp.modelo.TipoUsuario"
-                android:defaultValue="NORMAL"/>
+                android:defaultValue="NORMAL"
+                app:argType="com.audiapp.modelo.TipoUsuario" />
             <action
                 android:id="@+id/action_elegirModulo_to_modoEleccionEjercicio"
                 app:destination="@id/modoEleccionEjercicioFragment" />
@@ -86,12 +87,12 @@
             android:id="@+id/crearProgresionFragment"
             android:name="com.audiapp.crearprogresion.CrearProgresionFragment"
             android:label="@string/title_crear_progresion"
-            tools:layout="@layout/fragment_crear_progresion"/>
+            tools:layout="@layout/fragment_crear_progresion" />
         <fragment
             android:id="@+id/ejercicioPorOpcionesFragment"
             android:name="com.audiapp.adivinar.EjercicioPorOpcionesFragment"
             android:label="@string/title_ejercicio_opciones"
-            tools:layout="@layout/fragment_ejercicio_por_opciones"/>
+            tools:layout="@layout/fragment_ejercicio_por_opciones" />
         <fragment
             android:id="@+id/reproductorFragment"
             android:name="com.audiapp.reproductor.ReproductorFragment"
@@ -101,7 +102,7 @@
             android:id="@+id/modoEleccionEjercicioFragment"
             android:name="com.audiapp.adivinar.ModoEleccionEjercicioFragment"
             android:label="@string/title_elegir_modo_creacion_ejercicio"
-            tools:layout="@layout/fragment_modo_eleccion_ejercicio" >
+            tools:layout="@layout/fragment_modo_eleccion_ejercicio">
             <action
                 android:id="@+id/action_modoEleccionEjercicio_to_ejercicioPorOpciones"
                 app:destination="@id/ejercicioPorOpcionesFragment" />

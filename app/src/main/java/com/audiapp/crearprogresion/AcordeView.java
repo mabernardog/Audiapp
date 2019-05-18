@@ -18,8 +18,8 @@ import com.audiapp.modelo.Acorde;
 
 public class AcordeView extends LinearLayout {
     private EditText mAcorde;
-    private String   mFigura;
-    private Spinner  mSpinner;
+    private String mFigura;
+    private Spinner mSpinner;
 
     public AcordeView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);

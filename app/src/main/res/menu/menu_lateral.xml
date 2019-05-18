@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/drawer_cuenta"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_mostrar_perfil"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="@string/drawer_ver_perfil" />
+    </group>
+
+    <group
+        android:id="@+id/drawer_acciones"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_mostrar_progresiones"
+            android:icon="@drawable/ic_format_list_bulleted_black_24dp"
+            android:title="@string/drawer_ver_progresiones" />
+        <item
+            android:id="@+id/drawer_mostrar_estadisticas"
+            android:icon="@drawable/ic_school_black_24dp"
+            android:title="@string/drawer_ver_mis_estadisticas" />
+    </group>
+    <group
+        android:id="@+id/drawer_salir"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_logout"
+            android:icon="@drawable/ic_exit_to_app_black_24dp"
+            android:title="@string/drawer_cerrar_sesion" />
+    </group>
+</menu>
