@@ -1,4 +1,4 @@
-package com.audiapp.reproductor;
+package com.audiapp.crearprogresion;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -14,23 +14,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.audiapp.R;
+import com.audiapp.viewmodels.CrearProgresionViewModel;
 
-import java.io.File;
 import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ReproductorFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
+public class ReproductorCreadaFragment extends Fragment {
     @Nullable
     @BindView(R.id.toolbar_reproductor)
     Toolbar toolbar;
@@ -39,11 +37,12 @@ public class ReproductorFragment extends Fragment {
     private ServiceConnection mServiceConnection;
     private Intent intentServicio;
     private ServicioReproductor mServicioReproductor;
-    private boolean servicioActivo;
+    private CrearProgresionViewModel mViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(CrearProgresionViewModel.class);
     }
 
     @Override
@@ -70,27 +69,20 @@ public class ReproductorFragment extends Fragment {
                 ServicioReproductor.ServicioReproductorBinder binder = (ServicioReproductor.ServicioReproductorBinder) service;
                 mServicioReproductor = binder.getService();
                 mServicioReproductor.setContext(getContext());
-                // Todo: usar los midis generados por el fragment previo
-                mServicioReproductor.setUris((new File(getContext().getFilesDir(), "teste.mid").getPath()));
+                mServicioReproductor.setUris(mViewModel.getProgresion().getArchivo());
                 mWidgetReproductor.setMediaPlayer(new ControladorReproductor(mServicioReproductor));
                 mWidgetReproductor.show();
                 mServicioReproductor.play();
-                servicioActivo = true;
             }
 
             @Override
             public void onServiceDisconnected(ComponentName name) {
-                servicioActivo = false;
             }
         };
         // Inicializar el widget
         mWidgetReproductor = new WidgetReproductor(getContext());
         mWidgetReproductor.setAnchorView(vistaFragmento);
-        mWidgetReproductor.setPrevNextListeners(v -> {
-            mServicioReproductor.siguiente();
-        }, v -> {
-            mServicioReproductor.anterior();
-        });
+        mWidgetReproductor.setPrevNextListeners(v -> mServicioReproductor.siguiente(), v -> mServicioReproductor.anterior());
         return vistaFragmento;
     }
 
@@ -102,5 +94,12 @@ public class ReproductorFragment extends Fragment {
             Objects.requireNonNull(getActivity()).bindService(intentServicio, mServiceConnection, Context.BIND_AUTO_CREATE);
             getActivity().startService(intentServicio);
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mServicioReproductor.stopService(intentServicio);
+        mWidgetReproductor.hideManual();
     }
 }

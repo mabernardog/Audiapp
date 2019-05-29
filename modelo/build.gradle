@@ -35,4 +35,5 @@ dependencies {
     implementation "androidx.room:room-runtime:2.1.0-beta01"
     annotationProcessor "androidx.room:room-compiler:2.1.0-beta01"
     implementation 'com.explodingart:jmusic:1.6.4.1'
+    implementation project(path: ':jfugue-5.0.9')
 }

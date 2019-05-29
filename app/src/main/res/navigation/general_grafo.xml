@@ -72,30 +72,35 @@
             tools:layout="@layout/fragment_elegir_modulo">
             <action
                 android:id="@+id/action_elegirModulo_to_crearProgresion"
-                app:destination="@id/crearProgresionFragment"
+                app:destination="@id/crearProgresionAcordesFragment"
                 app:enterAnim="@anim/nav_default_enter_anim"
                 app:exitAnim="@anim/nav_default_exit_anim" />
-            <argument
-                android:name="tipoUsuario"
-                android:defaultValue="NORMAL"
-                app:argType="com.audiapp.modelo.TipoUsuario" />
             <action
                 android:id="@+id/action_elegirModulo_to_modoEleccionEjercicio"
                 app:destination="@id/modoEleccionEjercicioFragment" />
         </fragment>
         <fragment
-            android:id="@+id/crearProgresionFragment"
-            android:name="com.audiapp.crearprogresion.CrearProgresionFragment"
+            android:id="@+id/crearProgresionAcordesFragment"
+            android:name="com.audiapp.crearprogresion.CrearProgresionAcordesFragment"
             android:label="@string/title_crear_progresion"
-            tools:layout="@layout/fragment_crear_progresion" />
+            tools:layout="@layout/fragment_crear_progresion_acordes">
+            <action
+                android:id="@+id/action_crearProgresionAcordes_to_crearProgresionTempo"
+                app:destination="@id/crearProgresionTempoFragment" />
+            <action
+                android:id="@+id/action_crearProgresionAcordesFragment_to_referenciaAcordesDialog"
+                app:destination="@id/referenciaAcordesDialog"
+                app:popUpTo="@+id/crearProgresionAcordesFragment"
+                app:popUpToInclusive="false" />
+        </fragment>
         <fragment
             android:id="@+id/ejercicioPorOpcionesFragment"
             android:name="com.audiapp.adivinar.EjercicioPorOpcionesFragment"
             android:label="@string/title_ejercicio_opciones"
             tools:layout="@layout/fragment_ejercicio_por_opciones" />
         <fragment
-            android:id="@+id/reproductorFragment"
-            android:name="com.audiapp.reproductor.ReproductorFragment"
+            android:id="@+id/reproductorCreadaFragment"
+            android:name="com.audiapp.crearprogresion.ReproductorCreadaFragment"
             android:label="@string/title_reproductor"
             tools:layout="@layout/fragment_reproductor" />
         <fragment
@@ -107,5 +112,25 @@
                 android:id="@+id/action_modoEleccionEjercicio_to_ejercicioPorOpciones"
                 app:destination="@id/ejercicioPorOpcionesFragment" />
         </fragment>
+        <fragment
+            android:id="@+id/crearProgresionTempoFragment"
+            android:name="com.audiapp.crearprogresion.CrearProgresionTempoFragment"
+            android:label="@string/title_crear_progresion">
+            <action
+                android:id="@+id/action_crearProgresionTempo_to_reproductorProgresionCreada"
+                app:destination="@id/reproductorCreadaFragment"
+                app:popUpTo="@+id/crearProgresionAcordesFragment"
+                app:popUpToInclusive="false" />
+        </fragment>
+        <dialog
+            android:id="@+id/referenciaAcordesDialog"
+            android:name="com.audiapp.crearprogresion.ReferenciaAcordesDialog"
+            android:label="@string/title_referencia_acordes"
+            tools:layout="@layout/dialog_referencia_acordes" />
+        <!--fragment
+            android:id="@+id/referenciaAcordesFragment"
+            android:name="com.audiapp.crearprogresion.ReferenciaAcordesFragment"
+            android:label="fragment_referencia_acordes"
+            tools:layout="@layout/fragment_referencia_acordes" /-->
     </navigation>
 </navigation>

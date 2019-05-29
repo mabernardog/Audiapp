@@ -19,6 +19,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/contentDescriptionFotoPerfil"
         app:srcCompat="@mipmap/ic_icono_round" />
 
     <TextView

@@ -46,9 +46,41 @@ public class AcordeView extends LinearLayout {
         });
     }
 
+    public void setError() {
+        mAcorde.setError("Acorde inválido");
+    }
+
 
     public Acorde getAcorde() {
-        //String str = mAcorde.getText().toString();
-        return new Acorde(/*mAcorde.getText().toString()*/"", mFigura);
+        try {
+            return new Acorde(mAcorde.getText().toString(), mFigura);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public void setAcorde(Acorde acorde) {
+        this.mAcorde.setText(acorde.getCadena());
+        switch (acorde.getFigura()) {
+            case "Semicor.":
+                this.mSpinner.setSelection(0);
+                break;
+            case "Corchea":
+                this.mSpinner.setSelection(1);
+                break;
+            case "Negra":
+                this.mSpinner.setSelection(2);
+                break;
+            case "Blanca":
+                this.mSpinner.setSelection(3);
+                break;
+            case "Redonda":
+                this.mSpinner.setSelection(4);
+                break;
+            default:
+                this.mSpinner.setSelected(false);
+                break;
+        }
     }
 }

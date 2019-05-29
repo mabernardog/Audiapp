@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.audiapp">
-
     <!-- To access Google+ APIs: -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -16,22 +15,19 @@
         android:roundIcon="@mipmap/ic_icono_round"
         android:supportsRtl="true"
         android:theme="@style/AudiappTheme">
-        <meta-data
-            android:name="com.google.android.gms.car.application"
-            android:resource="@xml/automotive_app_desc" />
 
         <!--
          Main music service, provides media browsing and media playback services to
          consumers through MediaBrowserService and MediaSession. Consumers connect to it through
          MediaBrowser (for browsing) and MediaController (for playback control)
         -->
-        <service
+        <!--service
             android:name=".MyMusicService"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.media.browse.MediaBrowserService" />
             </intent-filter>
-        </service>
+        </service-->
 
         <activity android:name=".inicial.MainActivity">
             <intent-filter>
@@ -41,7 +37,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".reproductor.ServicioReproductor" />
+        <service android:name=".crearprogresion.ServicioReproductor" />
     </application>
 
 </manifest>

@@ -25,7 +25,10 @@
     <string name="button_goEjercicioPorOpciones">Por opciones</string>
     <string name="title_ejercicio_opciones">Opciones del ejercicio</string>
     <string name="title_crear_progresion">Crear progresión</string>
+    <string name="title_referencia_acordes">Hoja de referencia</string>
     <string name="info_crear_progresion">Escribe (con cifrado americano) los acordes de la progresión</string>
+    <string name="toast_corregir_acordes_crear_progresion">Corrige los acordes que formarán la progresión</string>
+    <string name="toast_corregir_tempo_crear_progresion">Determina el tempo de la progresión</string>
     <string name="info_add">Añadir</string>
     <string name="item_referencia_acorde">Mostrar hoja de referencia</string>
     <string name="title_reproductor">Reproductor</string>
@@ -69,5 +72,10 @@
     <string name="info_progresionTonalViewModel_invalido">Completa la configuración de la progresión cumplimentando todos los campos de las pestañas</string>
     <string name="info_modoEleccionEjercicio">¿Cómo quieres crear el ejercicio?</string>
     <string name="text_borrar">Borrar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_referencia_acordes_dialog">ReferenciaAcordesDialog</string>
+    <string name="contentDescriptionFotoPerfil">FotoPerfil</string>
 
 </resources>

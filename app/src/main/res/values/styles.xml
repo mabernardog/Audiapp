@@ -50,4 +50,17 @@
         <item name="titleTextColor">@android:color/white</item>
     </style>
 
+    <style name="AudiappTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AudiappTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AudiappTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AudiappTheme.DialogFullScreen" parent="AudiappTheme">
+        <item name="android:windowIsFloating">false</item>
+    </style>
+
 </resources>
