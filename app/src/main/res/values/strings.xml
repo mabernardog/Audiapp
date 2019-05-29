@@ -72,10 +72,6 @@
     <string name="info_progresionTonalViewModel_invalido">Completa la configuración de la progresión cumplimentando todos los campos de las pestañas</string>
     <string name="info_modoEleccionEjercicio">¿Cómo quieres crear el ejercicio?</string>
     <string name="text_borrar">Borrar</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_referencia_acordes_dialog">ReferenciaAcordesDialog</string>
     <string name="contentDescriptionFotoPerfil">FotoPerfil</string>
 
 </resources>

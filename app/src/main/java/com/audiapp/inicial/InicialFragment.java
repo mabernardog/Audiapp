@@ -93,13 +93,13 @@ public class InicialFragment extends Fragment {
                         @Override
                         public void onFailure(@NonNull Call<InfoDBAudiappi> llamada, @NonNull Throwable t) {
                             // No se ha podido contactar con el servidor: se irá a actividad de login
-                            new Handler().postDelayed(new SiguienteActivity(instancia, "DECIDIR"), 2000);
+                            new Handler().postDelayed(new SiguienteActivity(instancia, "DECIDIR"), 50);
                         }
                     });
         }
         // Si no los hay, ir a ELEGIR si login o registro
         else {
-            new Handler().postDelayed(new SiguienteActivity(this, "DECIDIR"), 5000);
+            new Handler().postDelayed(new SiguienteActivity(this, "DECIDIR"), 4000);
         }
         return vistaFragmento;
     }

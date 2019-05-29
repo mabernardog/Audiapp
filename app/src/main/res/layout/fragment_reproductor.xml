@@ -5,9 +5,8 @@
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".reproductor.ReproductorFragment">
+    tools:context=".crearprogresion.ReproductorCreadaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_reproductor"
         android:layout_width="match_parent"

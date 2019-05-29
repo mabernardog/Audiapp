@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -73,6 +74,9 @@ class EjercicioPorOpcionesFragment extends Fragment {
         // Añadir onClick al botón flotante
         assert mFloatingActionButton != null;
         mFloatingActionButton.setOnClickListener(v -> {
+            if (!mViewModel.esValido()) {
+                (Toast.makeText(getContext(), "Rellena todos los campos", Toast.LENGTH_SHORT)).show();
+            }
             // Todo: contactar con el servidor para pedir ejercicio
             // Todo: generar el MIDI del ejercicio
             MidiGen.generarTestEn((new File(Objects.requireNonNull(getContext()).getFilesDir(), "teste.mid").getPath()));

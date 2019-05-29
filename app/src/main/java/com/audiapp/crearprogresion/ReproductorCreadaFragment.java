@@ -32,7 +32,6 @@ public class ReproductorCreadaFragment extends Fragment {
     @Nullable
     @BindView(R.id.toolbar_reproductor)
     Toolbar toolbar;
-    // TODO: Rename and change types of parameters
     private WidgetReproductor mWidgetReproductor;
     private ServiceConnection mServiceConnection;
     private Intent intentServicio;

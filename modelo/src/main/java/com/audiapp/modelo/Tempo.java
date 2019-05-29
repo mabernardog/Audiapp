@@ -1,6 +1,5 @@
 package com.audiapp.modelo;
 
-// Todo: revisar qué es el Allegretto
 public class Tempo {
     private int ppm;
     private String clasificacion;
