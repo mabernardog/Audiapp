@@ -12,8 +12,8 @@ public class Acorde {
     private String mCadena;
     private String mFigura;
     private String mTipo;
+    private String mTonalidad;
     private int mInversion;
-    private int mTonalidad; // Todo: pensar cómo sacarla
 
 
     public Acorde(String acorde, String figura) throws InstantiationException {
@@ -26,7 +26,7 @@ public class Acorde {
             this.mFigura = figura;
             this.mTipo = chord.getChordType();  // DOM7, MAJ...
             this.mInversion = chord.getInversion();  // 0, 1, 2, 3 (sin, 1ª, 2ª y 3ª inversión)
-            this.mTonalidad = acorde.charAt(0);
+            this.mTonalidad = chord.getRoot().getOriginalString();
             // Obtener las notas de jFugue
             Note[] chordNotes = chord.getNotes();
             // Transformarlo a notas de jMusic
