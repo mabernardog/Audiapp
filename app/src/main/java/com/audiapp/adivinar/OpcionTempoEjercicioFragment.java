@@ -18,7 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.audiapp.R;
-import com.audiapp.modelo.Tempo;
+import com.audiapp.modelo.progresiones.Tempo;
 import com.audiapp.viewmodels.OpcionesEjercicioViewModel;
 
 import butterknife.BindView;

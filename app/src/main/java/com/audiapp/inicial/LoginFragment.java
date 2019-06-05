@@ -30,8 +30,8 @@ import com.audiapp.db.GestorDB;
 import com.audiapp.db.GestorUsuarioDB;
 import com.audiapp.globales.Strings;
 import com.audiapp.modelo.InfoDBAudiappi;
-import com.audiapp.modelo.TipoUsuario;
-import com.audiapp.modelo.Usuario;
+import com.audiapp.modelo.usuarios.TipoUsuario;
+import com.audiapp.modelo.usuarios.Usuario;
 import com.audiapp.viewmodels.AppViewModel;
 import com.google.android.material.textfield.TextInputLayout;
 

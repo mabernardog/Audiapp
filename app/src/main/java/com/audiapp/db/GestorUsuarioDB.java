@@ -3,8 +3,8 @@ package com.audiapp.db;
 import android.util.Log;
 
 import com.audiapp.excepciones.DBNotCreatedExcepction;
-import com.audiapp.modelo.Usuario;
 import com.audiapp.modelo.daos.UsuarioDAO;
+import com.audiapp.modelo.usuarios.Usuario;
 
 import java.util.ArrayList;
 import java.util.Arrays;

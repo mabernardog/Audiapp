@@ -1,4 +1,4 @@
-package com.audiapp.modelo;
+package com.audiapp.modelo.usuarios;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

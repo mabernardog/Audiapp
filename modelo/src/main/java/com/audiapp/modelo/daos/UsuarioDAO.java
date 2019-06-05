@@ -7,7 +7,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.audiapp.modelo.Usuario;
+import com.audiapp.modelo.usuarios.Usuario;
 
 import java.util.List;
 

@@ -30,7 +30,7 @@ import com.audiapp.R;
 import com.audiapp.apisgu.API_SGU;
 import com.audiapp.globales.Strings;
 import com.audiapp.modelo.InfoDBAudiappi;
-import com.audiapp.modelo.Usuario;
+import com.audiapp.modelo.usuarios.Usuario;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;

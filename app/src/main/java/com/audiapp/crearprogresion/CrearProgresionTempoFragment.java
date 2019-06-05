@@ -24,8 +24,8 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.audiapp.R;
 import com.audiapp.midigen.MidiGen;
-import com.audiapp.modelo.ProgresionArmonica;
-import com.audiapp.modelo.Tempo;
+import com.audiapp.modelo.progresiones.ProgresionArmonica;
+import com.audiapp.modelo.progresiones.Tempo;
 import com.audiapp.viewmodels.AppViewModel;
 import com.audiapp.viewmodels.CrearProgresionViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

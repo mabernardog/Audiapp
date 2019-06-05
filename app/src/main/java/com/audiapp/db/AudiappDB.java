@@ -9,10 +9,14 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.audiapp.excepciones.DBNotCreatedExcepction;
-import com.audiapp.modelo.Usuario;
+import com.audiapp.modelo.daos.AcordesDAO;
+import com.audiapp.modelo.daos.ProgresionesDAO;
 import com.audiapp.modelo.daos.UsuarioDAO;
+import com.audiapp.modelo.progresiones.Acorde;
+import com.audiapp.modelo.progresiones.ProgresionArmonica;
+import com.audiapp.modelo.usuarios.Usuario;
 
-@Database(entities = {Usuario.class}, version = 1)
+@Database(entities = {Usuario.class, ProgresionArmonica.class, Acorde.class}, version = 1)
 public abstract class AudiappDB extends RoomDatabase {
     private static AudiappDB db;
 
@@ -36,4 +40,8 @@ public abstract class AudiappDB extends RoomDatabase {
     }
 
     public abstract UsuarioDAO usuarioDAO();
+
+    public abstract ProgresionesDAO progresionesDAO();
+
+    public abstract AcordesDAO acordesDAO();
 }

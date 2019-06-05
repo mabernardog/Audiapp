@@ -12,6 +12,10 @@ public class GestorDB {
         switch (tabla) {
             case "Usuario":
                 return new GestorUsuarioDB();
+            case "Progresiones":
+                return new GestorProgresionesDB();
+            case "Acordes":
+                return new GestorAcordesDB();
             case "CrearDB":
                 return new CreadorDB();
             default:

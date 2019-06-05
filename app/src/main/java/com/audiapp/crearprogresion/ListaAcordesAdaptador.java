@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.audiapp.R;
-import com.audiapp.modelo.Acorde;
+import com.audiapp.modelo.progresiones.Acorde;
 
 import java.util.ArrayList;
 

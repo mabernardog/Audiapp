@@ -1,4 +1,4 @@
-package com.audiapp.modelo;
+package com.audiapp.modelo.progresiones;
 
 public class Tempo {
     private int ppm;

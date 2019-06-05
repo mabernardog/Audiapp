@@ -20,7 +20,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
 import com.audiapp.R;
-import com.audiapp.modelo.Acorde;
+import com.audiapp.modelo.progresiones.Acorde;
 import com.audiapp.viewmodels.AppViewModel;
 import com.audiapp.viewmodels.CrearProgresionViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -39,6 +39,11 @@ class CrearProgresionAcordesFragment extends Fragment {
     @Nullable
     @BindView(R.id.listaAcordesProgTL)
     TableLayout mTableLayout;
+    private final View.OnClickListener eliminarAcorde = v -> {
+        TableRow filaaRef = (TableRow) v.getParent();
+        assert mTableLayout != null;
+        mTableLayout.removeView(filaaRef);
+    };
     @Nullable
     @BindView(R.id.button2)
     Button botonAdd;
@@ -48,14 +53,7 @@ class CrearProgresionAcordesFragment extends Fragment {
     @Nullable
     @BindView(R.id.fabCrearProgresion)
     FloatingActionButton mFab;
-
     private CrearProgresionViewModel mViewModel;
-
-    private View.OnClickListener eliminarAcorde = v -> {
-        TableRow filaaRef = (TableRow) v.getParent();
-        assert mTableLayout != null;
-        mTableLayout.removeView(filaaRef);
-    };
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

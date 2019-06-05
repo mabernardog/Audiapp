@@ -2,7 +2,7 @@ package com.audiapp.viewmodels;
 
 import androidx.lifecycle.ViewModel;
 
-import com.audiapp.modelo.ProgresionArmonica;
+import com.audiapp.modelo.progresiones.ProgresionArmonica;
 
 public class CrearProgresionViewModel extends ViewModel {
     private ProgresionArmonica mProgresion;

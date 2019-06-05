@@ -14,12 +14,12 @@ import android.widget.Spinner;
 import androidx.annotation.Nullable;
 
 import com.audiapp.R;
-import com.audiapp.modelo.Acorde;
+import com.audiapp.modelo.progresiones.Acorde;
 
 public class AcordeView extends LinearLayout {
-    private EditText mAcorde;
+    private final EditText mAcorde;
+    private final Spinner mSpinner;
     private String mFigura;
-    private Spinner mSpinner;
 
     public AcordeView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);

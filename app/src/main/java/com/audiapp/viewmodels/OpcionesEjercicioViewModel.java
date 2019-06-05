@@ -2,7 +2,7 @@ package com.audiapp.viewmodels;
 
 import androidx.lifecycle.ViewModel;
 
-import com.audiapp.modelo.Tempo;
+import com.audiapp.modelo.progresiones.Tempo;
 
 import java.util.ArrayList;
 

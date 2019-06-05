@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.audiapp.R;
-import com.audiapp.modelo.TipoUsuario;
+import com.audiapp.modelo.usuarios.TipoUsuario;
 import com.audiapp.viewmodels.AppViewModel;
 import com.google.android.material.button.MaterialButton;
 

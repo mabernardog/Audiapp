@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.audiapp.R;
-import com.audiapp.modelo.TipoUsuario;
+import com.audiapp.modelo.usuarios.TipoUsuario;
 
 import java.util.HashSet;
 import java.util.Set;
