@@ -37,7 +37,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".crearprogresion.ServicioReproductor" />
+        <service android:name=".reproductor.ServicioReproductor" />
     </application>
 
 </manifest>

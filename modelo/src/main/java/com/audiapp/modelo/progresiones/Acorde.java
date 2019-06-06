@@ -36,6 +36,7 @@ public class Acorde {
     private String mTonalidad;
     @ColumnInfo(name = "inversion")
     private int mInversion;
+    @ColumnInfo(name = "idProgresion")
     private int idProgresion;
     @Ignore
     private CPhrase mAcorde;
@@ -91,7 +92,8 @@ public class Acorde {
     }
 
     // Todo: implementar constructores para Room
-    public Acorde(String cadena, String figura, String tipo, String tonalidad, int inversion) {
+    public Acorde(String cadena, String figura, String tipo, String tonalidad, int inversion, int idProgresion) {
+        this.idProgresion = idProgresion;
         this.mCadena = cadena;
         this.mFigura = figura;
         this.mTipo = tipo;

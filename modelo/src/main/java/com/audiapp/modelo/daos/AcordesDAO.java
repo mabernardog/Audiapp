@@ -19,6 +19,9 @@ public interface AcordesDAO extends InterfazDAO<Acorde> {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void crear(Acorde a);
 
+    @Query("SELECT * FROM ACORDES WHERE idProgresion = :arg0")
+    List<Acorde> leerDeProgresion(int arg0);
+
     @Nullable
     @Override
     @Query("SELECT * FROM ACORDES")

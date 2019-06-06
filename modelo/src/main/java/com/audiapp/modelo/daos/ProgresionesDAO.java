@@ -26,7 +26,7 @@ public interface ProgresionesDAO extends InterfazDAO<ProgresionArmonica> {
     @Query("SELECT * FROM PROGRESIONES")
     List<ProgresionArmonica> leerTodos();
 
-    @Query("SELECT COUNT(*) FROM PROGRESIONES where nombre = :arg0")
+    @Query("SELECT COUNT(*) FROM PROGRESIONES WHERE nombre = :arg0")
     long cuentaProgresionesDeNombre(String arg0);
 
     @Override
