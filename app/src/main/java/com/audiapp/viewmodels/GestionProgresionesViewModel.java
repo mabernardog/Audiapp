@@ -4,13 +4,10 @@ import androidx.lifecycle.ViewModel;
 
 import com.audiapp.modelo.progresiones.ProgresionArmonica;
 
-public class CrearProgresionViewModel extends ViewModel {
+public class GestionProgresionesViewModel extends ViewModel {
     private ProgresionArmonica mProgresion;
 
     public ProgresionArmonica getProgresion() {
-        if (mProgresion == null) {   // Crear si es nulo
-            mProgresion = new ProgresionArmonica();
-        }
         return mProgresion;
     }
 

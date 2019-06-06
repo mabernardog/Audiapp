@@ -73,4 +73,11 @@ public class OpcionesEjercicioViewModel extends ViewModel {
         // Validar que haya alguna tonalidad mayor o menor en la lista
         return !tonalidadesProgresion.get(0).isEmpty() || !tonalidadesProgresion.get(1).isEmpty();// Si no se sale por algún if anterior, la progresión es sintetizable
     }
+
+    public void limpiar() {
+        if (tiposProgresion != null) tiposProgresion.clear();
+        if (tonalidadesProgresion != null) tonalidadesProgresion.clear();
+        hayInversiones = null;
+        tempo = null;
+    }
 }
