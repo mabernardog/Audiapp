@@ -1,6 +1,7 @@
 package com.audiapp.inicial;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +28,9 @@ import com.audiapp.db.GestorUsuarioDB;
 import com.audiapp.modelo.usuarios.TipoUsuario;
 import com.audiapp.modelo.usuarios.Usuario;
 import com.audiapp.viewmodels.AppViewModel;
+import com.audiapp.viewmodels.CrearProgresionViewModel;
+import com.audiapp.viewmodels.GestionProgresionesViewModel;
+import com.audiapp.viewmodels.OpcionesEjercicioViewModel;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 
@@ -82,6 +86,10 @@ class ElegirModuloFragment extends Fragment implements NavigationView.OnNavigati
         assert toolbar != null && navigationDrawer != null;
         NavigationUI.setupWithNavController(toolbar, mNavController, mAppViewModel.getAppBarConfiguration());
         NavigationUI.setupWithNavController((NavigationView) vistaFragmento.findViewById(R.id.navigation_drawer), mNavController);
+        // Limpiar ViewModels
+        ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(GestionProgresionesViewModel.class).limpiar();
+        ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(CrearProgresionViewModel.class).limpiar();
+        ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(OpcionesEjercicioViewModel.class).limpiar();
         // Determinar el tipo de usuario
         TipoUsuario tipoUsuario = mAppViewModel.getTipoAcceso();
         // Configurar el drawer
@@ -113,13 +121,14 @@ class ElegirModuloFragment extends Fragment implements NavigationView.OnNavigati
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        item.setChecked(true);
-        Objects.requireNonNull(drawerLayout).closeDrawers();
+        Objects.requireNonNull(drawerLayout).closeDrawer(Gravity.LEFT);
 
         switch (item.getItemId()) {
             case R.id.drawer_mostrar_perfil:
                 break;
             case R.id.drawer_mostrar_progresiones:
+                mNavController.navigate(R.id.action_elegirModulo_to_gestionProgresiones);
+                item.setChecked(false);
                 break;
             case R.id.drawer_mostrar_estadisticas:
                 break;
@@ -146,6 +155,6 @@ class ElegirModuloFragment extends Fragment implements NavigationView.OnNavigati
                 }
                 break;
         }
-        return true;
+        return false;
     }
 }

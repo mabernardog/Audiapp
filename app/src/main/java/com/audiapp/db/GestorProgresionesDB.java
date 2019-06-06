@@ -27,6 +27,7 @@ public class GestorProgresionesDB extends GestorTabla implements ProgresionesDAO
         final Semaphore semaphore = new Semaphore(0, false);
         Executor ejecutor = Executors.newSingleThreadExecutor();
         ArrayList<Long> idInsertado = new ArrayList<>();
+        p.setFecha();
         ejecutor.execute(() -> {
             try {
                 idInsertado.add(AudiappDB.getDB().progresionesDAO().crearPK(p));
@@ -49,7 +50,24 @@ public class GestorProgresionesDB extends GestorTabla implements ProgresionesDAO
     @Nullable
     @Override
     public List<ProgresionArmonica> leerTodos() {
-        return null;
+        final Semaphore semaphore = new Semaphore(0, false);
+        Executor ejecutor = Executors.newSingleThreadExecutor();
+        final ArrayList<List<ProgresionArmonica>> lista = new ArrayList<>();
+        ejecutor.execute(() -> {
+            try {
+                lista.add(AudiappDB.getDB().progresionesDAO().leerTodos());
+            } catch (DBNotCreatedExcepction dbnce) {
+                Log.wtf("DB", "Error fatal: uso incorrecto de AudiappDB" + Arrays.toString(dbnce.getStackTrace()));
+            } finally {
+                semaphore.release();
+            }
+        });
+        try {
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            Log.e("GestorProgresionesDB", Arrays.toString(e.getStackTrace()));
+        }
+        return lista.get(0);
     }
 
     @Override

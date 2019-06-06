@@ -31,7 +31,7 @@ public class ListaAcordesAdaptador extends RecyclerView.Adapter<ListaAcordesAdap
     @NonNull
     @Override
     public ListaAcordesAdaptador.ListaAcordesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View vista = LayoutInflater.from(mContext).inflate(R.layout.card_acorde, parent, false);
+        View vista = LayoutInflater.from(mContext).inflate(R.layout.card_progresion, parent, false);
         return new ListaAcordesViewHolder(vista);
     }
 

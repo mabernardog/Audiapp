@@ -78,6 +78,9 @@
             <action
                 android:id="@+id/action_elegirModulo_to_modoEleccionEjercicio"
                 app:destination="@id/modoEleccionEjercicioFragment" />
+            <action
+                android:id="@+id/action_elegirModulo_to_gestionProgresiones"
+                app:destination="@id/gestionProgresiones_grafo" />
         </fragment>
         <fragment
             android:id="@+id/crearProgresionAcordesFragment"
@@ -102,7 +105,7 @@
             android:id="@+id/reproductorCreadaFragment"
             android:name="com.audiapp.crearprogresion.ReproductorCreadaFragment"
             android:label="@string/title_reproductor"
-            tools:layout="@layout/fragment_reproductor" />
+            tools:layout="@layout/fragment_reproductor_creada" />
         <fragment
             android:id="@+id/modoEleccionEjercicioFragment"
             android:name="com.audiapp.adivinar.ModoEleccionEjercicioFragment"
@@ -127,6 +130,24 @@
             android:name="com.audiapp.crearprogresion.ReferenciaAcordesDialog"
             android:label="@string/title_referencia_acordes"
             tools:layout="@layout/dialog_referencia_acordes" />
+        <navigation
+            android:id="@+id/gestionProgresiones_grafo"
+            app:startDestination="@id/verProgresionesFragment">
+            <fragment
+                android:id="@+id/verProgresionesFragment"
+                android:name="com.audiapp.gestionprogresiones.VerProgresionesFragment"
+                android:label="@string/title_ver_progresiones"
+                tools:layout="@layout/fragment_ver_progresiones">
+                <action
+                    android:id="@+id/action_verProgresiones_to_gestorProgresion"
+                    app:destination="@id/gestorProgresionFragment" />
+            </fragment>
+            <fragment
+                android:id="@+id/gestorProgresionFragment"
+                android:name="com.audiapp.gestionprogresiones.GestorProgresionFragment"
+                android:label="fragment_gestionando_progresion"
+                tools:layout="@layout/fragment_gestor_progresion" />
+        </navigation>
         <!--fragment
             android:id="@+id/referenciaAcordesFragment"
             android:name="com.audiapp.crearprogresion.ReferenciaAcordesFragment"
