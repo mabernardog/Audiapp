@@ -52,6 +52,9 @@ public class ControladorReproductor implements MediaController.MediaPlayerContro
 
     @Override
     public int getBufferPercentage() {
+        if (mServicioReproductor != null && mServicioReproductor.isPlaying()) {
+            return 100 * (mServicioReproductor.getPos() / mServicioReproductor.getDur());
+        }
         return 0;
     }
 

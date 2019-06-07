@@ -3,7 +3,7 @@ package com.audiapp.apisgu;
 import androidx.annotation.NonNull;
 
 import com.audiapp.modelo.InfoDBAudiappi;
-import com.audiapp.modelo.Usuario;
+import com.audiapp.modelo.usuarios.Usuario;
 
 import retrofit2.Call;
 import retrofit2.http.Body;

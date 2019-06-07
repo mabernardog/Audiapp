@@ -21,11 +21,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.audiapp.R;
+import com.audiapp.midigen.MidiGen;
+import com.audiapp.modelo.progresiones.ProgresionArmonica;
 import com.audiapp.reproductor.ControladorReproductor;
 import com.audiapp.reproductor.ServicioReproductor;
 import com.audiapp.reproductor.WidgetReproductor;
 import com.audiapp.viewmodels.GestionProgresionesViewModel;
 
+import java.io.File;
 import java.util.Objects;
 
 import butterknife.BindView;
@@ -67,6 +70,10 @@ public class GestorProgresionFragment extends Fragment {
                 ServicioReproductor.ServicioReproductorBinder binder = (ServicioReproductor.ServicioReproductorBinder) service;
                 mServicioReproductor = binder.getService();
                 mServicioReproductor.setContext(getContext());
+                ProgresionArmonica p = mViewModel.getProgresion();
+                if (!(new File(p.getArchivo())).exists()) {
+                    MidiGen.generarProgresion(p, p.getArchivo());
+                }
                 mServicioReproductor.setUris(mViewModel.getProgresion().getArchivo());
                 mWidgetReproductor.setMediaPlayer(new ControladorReproductor(mServicioReproductor));
                 mWidgetReproductor.show();
